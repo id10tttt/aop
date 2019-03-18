@@ -9,7 +9,7 @@ _logger = logging.getLogger(__name__)
 class SaleLineExternal(models.Model):
     _inherit = 'sale.order.line'
 
-    vin_code = fields.Char('VIN Code')
+    vin_code = fields.Many2one('stock.production.lot', 'VIN Code')
 
     service_product_id = fields.Many2one('product.product', string='Fee Type', domain=[('sale_ok', '=', True)],
                                          ondelete='restrict')
@@ -87,10 +87,25 @@ class SaleOrder(models.Model):
     def open_vin_picking(self):
         action = self.env.ref('stock.action_picking_tree_all').read()[0]
 
-        pickings = self.mapped('picking_ids')
+        # VIN 码过滤
+        # pickings = self.mapped('picking_ids')
+        pickings = self._get_product_production_lot()
+
         if len(pickings) > 1:
             action['domain'] = [('id', 'in', pickings.ids)]
         elif pickings:
             action['views'] = [(self.env.ref('stock.view_picking_form').id, 'form')]
             action['res_id'] = pickings.id
         return action
+
+    def _get_product_production_lot(self):
+        data = []
+        for line_id in self.order_line:
+            move_line_ids = self.env['stock.move.line'].search([
+                ('lot_id', '=', line_id.vin_code.id),
+                ('move_id.product_id', '=', line_id.product_id.id)
+            ])
+            for move_line in move_line_ids:
+                data.append(move_line.move_id.picking_id.id) if move_line else False
+
+        return self.env['stock.picking'].browse(data)
