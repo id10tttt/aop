@@ -9,22 +9,22 @@ msgstr ""
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#. module: aop_sale_to_be
+#. module: aop_sale
 #: selection:product.template,type:0
 msgid "Storable Service"
 msgstr "可库存服务"
 
-#. module: aop_sale_to_be
+#. module: aop_sale
 #: model:ir.model.fields,field_description:product.template.field_vin_code
 msgid "VIN Code"
 msgstr "VIN 码"
 
-#. module: aop_sale_to_be
-#: model:ir.model.fields,field_description:aop_sale_to_besale.field_sale_order_line_vin_code
+#. module: aop_sale
+#: model:ir.model.fields,field_description:aop_sale.field_sale_order_line_vin_code
 msgid "VIN Code"
 msgstr "VIN 码"
 
-#. module: aop_sale_to_be
-#: model:ir.model.fields,field_description:aop_sale_to_be.field_sale_order_line__service_product_id
+#. module: aop_sale
+#: model:ir.model.fields,field_description:aop_sale.field_sale_order_line__service_product_id
 msgid "Fee Type"
 msgstr "费目"

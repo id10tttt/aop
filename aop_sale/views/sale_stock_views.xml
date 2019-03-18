@@ -54,14 +54,14 @@
 			</field>
 		</record>
 
-        <record id="aop_sale_to_be.sale_stock_aop_act_windows" model="ir.actions.act_window">
+        <record id="aop_sale.sale_stock_aop_act_windows" model="ir.actions.act_window">
 			<field name="name">路由线路</field>
 			<field name="type">ir.actions.act_window</field>
 			<field name="res_model">aop.route</field>
 			<field name="view_mode">tree,form</field>
 		</record>
 
-        <menuitem id="sale_stock" name="AOP" web_icon="aop_sale_to_be,static/description/icon.png"/>
+        <menuitem id="sale_stock" name="AOP" web_icon="aop_sale,static/description/icon.png"/>
         <menuitem id="sale_stock_aop_menu1" name="路由" parent="sale_stock"/>
         <menuitem id="sale_stock_aop_menu2" name="路由" parent="sale_stock_aop_menu1"
                   action="sale_stock_aop_act_windows"/>
