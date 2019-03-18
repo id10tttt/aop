@@ -1,0 +1,30 @@
+#  yang <yangy9494@gmail.com>, 2018
+
+msgid ""
+msgstr ""
+"Last-Translator: 1di0t <dgqcjx@gmail.com>, 2019\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: aop_sale_to_be
+#: selection:product.template,type:0
+msgid "Storable Service"
+msgstr "可库存服务"
+
+#. module: aop_sale_to_be
+#: model:ir.model.fields,field_description:product.template.field_vin_code
+msgid "VIN Code"
+msgstr "VIN 码"
+
+#. module: aop_sale_to_be
+#: model:ir.model.fields,field_description:aop_sale_to_besale.field_sale_order_line_vin_code
+msgid "VIN Code"
+msgstr "VIN 码"
+
+#. module: aop_sale_to_be
+#: model:ir.model.fields,field_description:aop_sale_to_be.field_sale_order_line__service_product_id
+msgid "Fee Type"
+msgstr "费目"

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <data>
+
+        <record model="ir.ui.view" id="view_picking_type_form_inherit">
+            <field name="name">stock.picking.type</field>
+            <field name="model">stock.picking.type</field>
+            <field name="inherit_id" ref="stock.view_picking_type_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='barcode']" position="after">
+                    <field name="product_id" string="费目"/>
+                </xpath>
+
+                <xpath expr="//group" position="after">
+                    <group>
+                        <group>
+                            <field name="src_partner_id" string="源地址"/>
+                        </group>
+                        <group>
+                            <field name="des_partner_id" string="目的地址"/>
+                        </group>
+                    </group>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+
+</odoo>
