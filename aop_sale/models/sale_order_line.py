@@ -13,37 +13,22 @@ _logger = logging.getLogger(__name__)
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    #vin = fields.Char('VIN')
-
-    #stock_production_lot_id = fields.Many2one('stock.production.lot', 'lot_id')
-    #vin = fields.Char(related='stock_production_lot_id.name', store=True)
-
-
-
     vin = fields.Many2one('stock.production.lot', 'VIN', domain="[('product_id','=', product_id)]")
 
-    service_product_id = fields.Many2one('product.product', string='Fee Type', domain=[('sale_ok', '=', True)],
-                                         change_default=True, ondelete='restrict')
+    service_product_id = fields.Many2one('product.product',
+                                         string='Fee Type',
+                                         related='route_id.service_product_id',
+                                         store=True,
+                                         ondelete='restrict')
 
     carrier_id = fields.Many2one('delivery.carrier', string='合同')
 
     carrier_price = fields.Float(string='合同费用', default=0, digits=dp.get_precision('Product Price'))
 
-    #@api.onchange('order_id.partner_id', 'carrier_id')
-    #def get_delivery_price(self):
-
-     #   if self.order_id.partner_id and self.carrier_id:
-     #       self.carrier_price = self.carrier_id.fixed_price
-     #       #self.price_unit += self.carrier_price
-
-     #   return
-
-
     @api.onchange('order_id.partner_id', 'carrier_id')
     def _onchange_route_id(self):
 
         self.carrier_price = self.carrier_id.fixed_price
-
 
         route_ids = [aop_id.route_id.id for aop_id in self.carrier_id.aop_route_id ]
 

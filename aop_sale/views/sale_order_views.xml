@@ -69,9 +69,6 @@
                     <attribute name="invisible">1</attribute>
                 </div>
 
-
-
-
                 <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="replace">
 
                                 <field
@@ -92,10 +89,25 @@
 
                 </xpath>
 
+                <!--# 隐藏价格-->
+                <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <!--# 隐藏税率-->
+                <xpath expr="//field[@name='order_line']/tree/field[@name='tax_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <!--# 隐藏小计-->
+                <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
                 <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">
-                     <field name="service_product_id" domain="[('type','=','service')]" attrs="{'required': 1}" />
-                     <field name="carrier_id"  domain="[('partner_id','=', parent.partner_id)]" />
-                    <field name="carrier_price" />
+                     <!--<field name="service_product_id" domain="[('type','=','service')]" attrs="{'required': 1}" />-->
+                    <field name="carrier_id"  domain="[('partner_id','=', parent.partner_id)]" />
+                    <!--<field name="carrier_price" />-->
                     <field name="vin"/>
                 </xpath>
 
@@ -119,7 +131,7 @@
 
                 <xpath expr="//field[@name='order_line']/form/group/group/field[@name='product_id']" position="after">
 
-                    <field name="service_product_id" domain="[('type','=','service')]" attrs="{'required': 1}" />
+                    <!--<field name="service_product_id" domain="[('type','=','service')]" attrs="{'required': 1}" />-->
 
                     <label for="carrier_id"/>
                     <div name='carrier_selection'>
@@ -131,10 +143,13 @@
                         </div>
 
                     </div>
-                    <field name="carrier_price" />
+                    <!--<field name="carrier_price" />-->
                     <field name="vin"/>
                 </xpath>
 
+                <xpath expr="//group[@name='sale_total']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
 
             </field>
         </record>

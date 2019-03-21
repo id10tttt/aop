@@ -10,7 +10,7 @@
         Long description of module's purpose
     """,
 
-    'author': "My Company",
+    'author': "1di0t",
     'website': "http://www.yourcompany.com",
 
     # Categories can be used to filter modules in modules listing
@@ -35,9 +35,7 @@
         'views/stock_picking.xml',
         'views/purchase_order_views.xml',
         'views/sale_stock_views.xml',
-    ],
-    # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
+        'views/stock_location_route.xml',
+        'views/subsidy_debit_order.xml'
     ],
 }

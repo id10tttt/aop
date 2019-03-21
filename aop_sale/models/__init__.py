@@ -11,3 +11,5 @@ from . import sale_stock
 from . import stock_picking_type
 from . import stock_picking_batch
 from . import stock_picking
+from . import stock_location_route
+from . import subsidy_debit_order

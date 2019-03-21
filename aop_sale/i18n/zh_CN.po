@@ -41,6 +41,16 @@ msgid "Take Car Address"
 msgstr "收车地址"
 
 #. module: aop_sale
+#: model_terms:ir.ui.view,arch_db:aop_sale.subsidy_debit_order_form
+msgid "Ordered Qty"
+msgstr "订购数量"
+
+#. module: aop_sale
+#: model_terms:ir.ui.view,arch_db:aop_sale.view_order_form_inherit_aop_sale
+msgid "Ordered Qty"
+msgstr "订购数量"
+
+#. module: aop_sale
 #: model:ir.model.fields,field_description:aop_sale.field_sale_order_line__vin
 msgid "VIN"
 msgstr ""
@@ -51,3 +61,22 @@ msgstr ""
 msgid "Warning for %s"
 msgstr ""
 
+#. module: aop_sale
+#: model_terms:ir.ui.view,arch_db:aop_sale.subsidy_debit_order_form
+msgid "Add a note"
+msgstr "增加备注"
+
+#. module: aop_sale
+#: model_terms:ir.ui.view,arch_db:aop_sale.subsidy_debit_order_form
+msgid "Add a product"
+msgstr "添加产品"
+
+#. module: aop_sale
+#: model_terms:ir.ui.view,arch_db:aop_sale.subsidy_debit_order_form
+msgid "Add a section"
+msgstr "添加部分"
+
+#. module: aop_sale
+#: model_terms:ir.ui.view,arch_db:sale.subsidy_debit_order_form
+msgid "Cancel"
+msgstr "取消"
