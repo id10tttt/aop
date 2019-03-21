@@ -13,17 +13,11 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
-
-class StockPickingType(models.Model):
-    _inherit = 'stock.picking.type'
-
-    service_product_id = fields.Many2one('product.product', string='Fee Type', domain=[('sale_ok', '=', True)], ondelete='restrict')
-
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
 
-    #src_partner_id = fields.Many2one('res.partner', related='picking_type_id.src_partner_id')
-    #des_partner_id = fields.Many2one('res.partner', related='picking_type_id.des_partner_id')
+    src_partner_id = fields.Many2one('res.partner', related='picking_type_id.src_partner_id')
+    des_partner_id = fields.Many2one('res.partner', related='picking_type_id.des_partner_id')
 
     picking_purchase_id = fields.Many2one('purchase.order', 'Purchase')
 
@@ -78,7 +72,7 @@ class StockPicking(models.Model):
         for line_id in self.move_ids_without_package:
             res.append((0, 0, {
                 'product_id': line_id.product_id.id,
-                'service_product_id': self.picking_type_id.service_product_id.id,
+                'service_product_id': self.picking_type_id.product_id.id,
                 'product_qty': line_id.product_uom_qty,
                 'name': line_id.product_id.name,
                 'date_planned': fields.Datetime.now(),

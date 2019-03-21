@@ -10,3 +10,5 @@ class StockPickingType(models.Model):
     des_partner_id = fields.Many2one('res.partner', string='Des partner')
 
     product_id = fields.Many2one('product.product')
+
+

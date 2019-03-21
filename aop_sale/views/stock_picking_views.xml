@@ -8,8 +8,19 @@
         <field name="arch" type="xml">
 
             <field name="sequence_id" position="after">
-                <field name="service_product_id" domain="[('type','=','service')]" />
+                <field name="product_id" domain="[('type','=','service')]" />
             </field>
+
+            <xpath expr="//group" position="after">
+                <group>
+                    <group>
+                        <field name="src_partner_id" string="源地址"/>
+                    </group>
+                    <group>
+                        <field name="des_partner_id" string="目的地址"/>
+                    </group>
+                </group>
+            </xpath>
 
         </field>
     </record>
