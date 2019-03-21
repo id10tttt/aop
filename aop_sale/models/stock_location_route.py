@@ -12,3 +12,4 @@ class StockLocationRoute(models.Model):
 
     service_product_id = fields.Many2one('product.product', string='Fee Type', domain=[('sale_ok', '=', True)],
                                          change_default=True, ondelete='restrict')
+

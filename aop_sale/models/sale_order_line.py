@@ -10,6 +10,7 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
+
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
@@ -17,6 +18,7 @@ class SaleOrderLine(models.Model):
 
     service_product_id = fields.Many2one('product.product',
                                          string='Fee Type',
+                                         related='route_id.service_product_id',
                                          domain=[('sale_ok', '=', True)],
                                          ondelete='restrict')
 
@@ -24,18 +26,17 @@ class SaleOrderLine(models.Model):
 
     carrier_price = fields.Float(string='合同费用', default=0, digits=dp.get_precision('Product Price'))
 
-    @api.onchange('order_id.partner_id', 'carrier_id')
+    @api.onchange('carrier_id')
     def _onchange_route_id(self):
 
+        _logger.info({
+            'carrier_id': self.carrier_id
+        })
         self.carrier_price = self.carrier_id.fixed_price
 
         route_ids = [aop_id.route_id.id for aop_id in self.carrier_id.aop_route_id ]
 
         if self.order_id.partner_id and self.carrier_id:
-            _logger.info({
-                '*' * 10: self.order_id,
-                '=' * 10: self.order_id.partner_id
-            })
             return {
                 'domain': {
                     'route_id': [('id', 'in', route_ids)]
@@ -46,11 +47,6 @@ class SaleOrderLine(models.Model):
             return {
                 'domain': []
             }
-
-    @api.onchange('route_id')
-    def _onchange_route_id(self):
-        if self.route_id:
-            self.service_product_id = self.route_id.service_product_id.id
 
     @api.multi
     @api.onchange('product_id')
@@ -107,10 +103,11 @@ class SaleOrderLine(models.Model):
     def _onchange_service_product_id_set_customer_lead(self):
         self.customer_lead = self.product_id.sale_delay
 
+
     @api.onchange('service_product_id')
     def _onchange_service_product_id_uom_check_availability(self):
         if not self.product_uom or (self.service_product_id.uom_id.category_id.id != self.product_uom.category_id.id):
-            self.product_uom = self.service_product_id.uom_id.id
+            self.product_uom = self.service_product_id.uom_id
         self._onchange_service_product_id_check_availability()
 
     @api.onchange('product_uom_qty', 'product_uom', 'route_id')

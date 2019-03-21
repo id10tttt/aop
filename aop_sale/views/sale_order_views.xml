@@ -111,6 +111,11 @@
                     <field name="vin"/>
                 </xpath>
 
+                <!--<xpath expr="//field[@name='order_line']/tree/field[@name='route_id']" position="after">-->
+                    <!--<field name="route_id"  domain="[('partner_id','=', parent.partner_id)]" />-->
+                <!--</xpath>-->
+
+
                 <xpath expr="//field[@name='order_line']/form/group/group/div/field[@name='product_uom_qty']" position="attributes">
                     <attribute name="readonly">1</attribute>
                 </xpath>

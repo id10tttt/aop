@@ -369,7 +369,6 @@
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" widget="mail_followers"/>
-                    <field name="activity_ids" widget="mail_activity"/>
                     <field name="message_ids" widget="mail_thread"/>
                 </div>
                 </form>
@@ -422,11 +421,11 @@
                     <attribute name="editable">bottom</attribute>
                 </xpath>
 
-                <xpath expr="//field[@name='partner_shipping_id']" position="before">
+                <!--<xpath expr="//field[@name='partner_shipping_id']" position="before">-->
 
-                    <field name="warehouse_id" options="{'no_create': True}"
-                           groups="stock.group_stock_multi_locations" attrs="{'invisible': 1}"/>
-                </xpath>
+                    <!--<field name="warehouse_id" options="{'no_create': True}"-->
+                           <!--groups="stock.group_stock_multi_locations" attrs="{'invisible': 1}"/>-->
+                <!--</xpath>-->
 
 
                 <xpath expr="//field[@name='partner_shipping_id']" position="attributes">

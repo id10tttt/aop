@@ -53,6 +53,7 @@ class AopRoute(models.Model):
             'name': route_data[0].partner_id.display_name + ' -> ' + route_data[-1].des_partner_id.display_name,
             'product_selectable': True,
             'sale_selectable': True,
+            'partner_id': self.partner_id.id,
             'warehouse_selectable': True,
             'warehouse_ids': [(6, 0, warehouse)],
         }
