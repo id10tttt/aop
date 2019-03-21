@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="view_order_form_inherit_aop_sale" model="ir.ui.view">
+            <field name="name">sale.order.form.aop.sale</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='order_line']/tree" position="attributes">
+                    <attribute name="editable">bottom</attribute>
+                </xpath>
+
+                <xpath expr="//button[@name='action_view_delivery']" position="after">
+                    <button name="open_vin_picking"
+							string="VIN码调拨单"
+							type="object"
+							class="oe_stat_button"
+							icon="fa-list"/>
+                </xpath>
+
+                <xpath expr="//field[@name='warehouse_id']" position="replace">
+
+                </xpath>
+
+                <xpath expr="//field[@name='partner_shipping_id']" position="before">
+                    <!--
+                    <label string="Take Car Address" for="warehouse_id"/>
+                    <field name="warehouse_id" nolabel="1" options="{'no_create': True}"
+                           groups="stock.group_stock_multi_locations" attrs="{'invisible': 1}"/>
+                    -->
+                    <field name="warehouse_id" options="{'no_create': True}"
+                           groups="stock.group_stock_multi_locations" attrs="{'invisible': 1}"/>
+                </xpath>
+
+                <!--
+                <xpath expr="//field[@name='partner_shipping_id']" position="before">
+                    <label string="Delivery Car Address" for="partner_shipping_id"/>
+                </xpath>
+
+                <xpath expr="//field[@name='partner_shipping_id']" position="attributes">
+                    <attribute name="nolabel">1</attribute>
+
+                </xpath>
+                -->
+
+                <xpath expr="//field[@name='partner_shipping_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+
+                <xpath expr="//field[@name='validity_date']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='partner_invoice_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='sale_order_template_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//label[@for='carrier_id']" position="replace">
+
+                </xpath>
+
+                <div name="carrier_selection" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </div>
+
+
+
+
+                <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="replace">
+
+                                <field
+                                        name="product_id"
+                                        domain="[('type','=','product')]"
+                                        force_save="1"
+                                        context="{
+                                            'partner_id': parent.partner_id,
+                                            'quantity': product_uom_qty,
+                                            'pricelist': parent.pricelist_id,
+                                            'uom':product_uom,
+                                            'company_id': parent.company_id,
+                                            'default_lst_price': price_unit,
+                                            'default_description_sale': name
+                                        }"
+                                        string="货物"
+                                    />
+
+                </xpath>
+
+                <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">
+                     <field name="service_product_id" domain="[('type','=','service')]" attrs="{'required': 1}" />
+                     <field name="carrier_id"  domain="[('partner_id','=', parent.partner_id)]" />
+                    <field name="carrier_price" />
+                    <field name="vin"/>
+                </xpath>
+
+                <xpath expr="//field[@name='order_line']/form/group/group/div/field[@name='product_uom_qty']" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='order_line']/form/group/group/field[@name='product_id']"
+                       position="replace">
+
+                    <label string="货物" for="product_id"/>
+                    <field name="product_id"
+                                                context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id}"
+                                                nolabel="1"
+                                                force_save="1"
+                                                domain="[('type','=','product')]"
+                                               />
+
+                </xpath>
+
+
+                <xpath expr="//field[@name='order_line']/form/group/group/field[@name='product_id']" position="after">
+
+                    <field name="service_product_id" domain="[('type','=','service')]" attrs="{'required': 1}" />
+
+                    <label for="carrier_id"/>
+                    <div name='carrier_selection'>
+                        <div>
+                            <field name="carrier_id" domain="[('partner_id','=', parent.partner_id)]" class="oe_inline"
+                                   options="{'no_create': True, 'no_open': True}"
+                                   attrs="{'readonly':[('state','not in',('draft','sent'))]}"/>
+
+                        </div>
+
+                    </div>
+                    <field name="carrier_price" />
+                    <field name="vin"/>
+                </xpath>
+
+
+            </field>
+        </record>
+
+
+    </data>
+</odoo>
