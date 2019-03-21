@@ -1,2 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_aop_purchase_aop_purchase,aop_purchase.aop_purchase,model_aop_purchase_aop_purchase,,1,0,0,0
