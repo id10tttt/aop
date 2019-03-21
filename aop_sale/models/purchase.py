@@ -57,15 +57,15 @@ class PurchaseOrderLine(models.Model):
             return {'warning': warning}
         return {}
 
-    @api.multi
-    @api.depends('product_uom', 'product_qty', 'service_product_id.uom_id')
-    def _compute_product_uom_qty(self):
-        for line in self:
-            if line.service_product_id.uom_id != line.product_uom:
-                line.product_uom_qty = line.product_uom._compute_quantity(line.product_qty,
-                                                                          line.service_product_id.uom_id)
-            else:
-                line.product_uom_qty = line.product_qty
+    # @api.multi
+    # @api.depends('product_uom', 'product_qty', 'service_product_id.uom_id')
+    # def _compute_product_uom_qty(self):
+    #     for line in self:
+    #         if line.service_product_id.uom_id != line.product_uom:
+    #             line.product_uom_qty = line.product_uom._compute_quantity(line.product_qty,
+    #                                                                       line.service_product_id.uom_id)
+    #         else:
+    #             line.product_uom_qty = line.product_qty
 
     @api.onchange('service_product_id')
     def onchange_service_product_id_warning(self):

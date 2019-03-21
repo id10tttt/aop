@@ -23,14 +23,13 @@ class StockPicking(models.Model):
 
     def create_purchase_order(self):
         data = self._get_purchase_data()
-
+        _logger.info({
+            'data': data
+        })
         res = self.env['purchase.order'].create(data)
 
         self.write({
             'picking_purchase_id': res.id
-        })
-        _logger.info({
-            '#' * 60: res.id
         })
 
     def _get_purchase_data(self):

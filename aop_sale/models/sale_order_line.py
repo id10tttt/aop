@@ -53,6 +53,7 @@ class SaleOrderLine(models.Model):
     def product_id_change(self):
         if self.product_id:
             self.vin = False
+            self.product_uom = self.product_id.uom_id.id
 
     @api.onchange('product_id')
     def _onchange_product_id_set_customer_lead(self):
@@ -105,7 +106,7 @@ class SaleOrderLine(models.Model):
     @api.onchange('service_product_id')
     def _onchange_service_product_id_uom_check_availability(self):
         if not self.product_uom or (self.service_product_id.uom_id.category_id.id != self.product_uom.category_id.id):
-            self.product_uom = self.service_product_id.uom_id
+            self.product_uom = self.service_product_id.uom_id.id
         self._onchange_service_product_id_check_availability()
 
     @api.onchange('product_uom_qty', 'product_uom', 'route_id')

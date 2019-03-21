@@ -8,14 +8,12 @@
         <field name="arch" type="xml">
             <xpath expr="/form/header/button[last()]" position="after">
 
-                <button name="create_purchase_order"
-                        string="Create Purchase Order"
-                        type="object"
-                        class="oe_highlight"
-                        attrs="{'invisible': [('picking_purchase_id', '!=', False)]}"
-                        />
-
-
+                <!--<button name="create_purchase_order"-->
+                        <!--string="Create Purchase Order"-->
+                        <!--type="object"-->
+                        <!--class="oe_highlight"-->
+                        <!--attrs="{'invisible': [('picking_purchase_id', '!=', False)]}"-->
+                        <!--/>-->
 
             </xpath>
 
