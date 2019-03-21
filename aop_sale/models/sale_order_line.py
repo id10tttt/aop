@@ -17,8 +17,7 @@ class SaleOrderLine(models.Model):
 
     service_product_id = fields.Many2one('product.product',
                                          string='Fee Type',
-                                         related='route_id.service_product_id',
-                                         store=True,
+                                         domain=[('sale_ok', '=', True)],
                                          ondelete='restrict')
 
     carrier_id = fields.Many2one('delivery.carrier', string='合同')
@@ -47,6 +46,11 @@ class SaleOrderLine(models.Model):
             return {
                 'domain': []
             }
+
+    @api.onchange('route_id')
+    def _onchange_route_id(self):
+        if self.route_id:
+            self.service_product_id = self.route_id.service_product_id.id
 
     @api.multi
     @api.onchange('product_id')
