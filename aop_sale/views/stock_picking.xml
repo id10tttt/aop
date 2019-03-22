@@ -17,11 +17,7 @@
 
             </xpath>
 
-            <xpath expr="//field[@name='origin']" position="after">
-                <field name="picking_purchase_id"
-                       string="Purchase Order"
-                       attrs="{'invisible': [('picking_purchase_id', '=', False)]}"/>
-            </xpath>
+
 
             <xpath expr="//field[@name='origin']" position="after">
                 <field name="src_partner_id" string="源地址"/>
