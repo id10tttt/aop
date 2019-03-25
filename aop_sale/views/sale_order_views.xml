@@ -24,30 +24,37 @@
                 </xpath>
 
                 <xpath expr="//field[@name='partner_shipping_id']" position="before">
+
                     <!--
-                    <label string="Take Car Address" for="warehouse_id"/>
-                    <field name="warehouse_id" nolabel="1" options="{'no_create': True}"
-                           groups="stock.group_stock_multi_locations" attrs="{'invisible': 1}"/>
+                    <field name="warehouse_id"
+                           string="Take Car Address"
+                           options="{'no_create': True}"
+                           groups="stock.group_stock_multi_locations"
+                           attrs="{'invisible': 1}"/>
                     -->
-                    <field name="warehouse_id" options="{'no_create': True}"
-                           groups="stock.group_stock_multi_locations" attrs="{'invisible': 1}"/>
+
+                    <field name="partner_take_care_id"
+                           string="Take Car Address"
+                           options="{'no_create': True, 'no_open': True}}"
+                           domain="[('id','=', partner_id), ('type','=', 'take')]"
+                           />
+
                 </xpath>
 
-                <!--
-                <xpath expr="//field[@name='partner_shipping_id']" position="before">
-                    <label string="Delivery Car Address" for="partner_shipping_id"/>
-                </xpath>
+
+
 
                 <xpath expr="//field[@name='partner_shipping_id']" position="attributes">
-                    <attribute name="nolabel">1</attribute>
+                    <attribute name="string">Delivery Car Address</attribute>
+                    <attribute name="domain">[('id','=', partner_id), ('type','=', 'delivery')]</attribute>
+                    <attribute name="options">{'no_create': True, 'no_open': True}</attribute>
 
                 </xpath>
-                -->
 
-                <xpath expr="//field[@name='partner_shipping_id']" position="attributes">
+                <!--# 隐藏付款条款-->
+                <xpath expr="//field[@name='payment_term_id']" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
-
 
                 <xpath expr="//field[@name='validity_date']" position="attributes">
                     <attribute name="invisible">1</attribute>
@@ -91,17 +98,17 @@
 
                 <!--# 隐藏价格-->
                 <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="attributes">
-                    <attribute name="invisible">1</attribute>
+                    <attribute name="invisible">0</attribute>
                 </xpath>
 
                 <!--# 隐藏税率-->
                 <xpath expr="//field[@name='order_line']/tree/field[@name='tax_id']" position="attributes">
-                    <attribute name="invisible">1</attribute>
+                    <attribute name="invisible">0</attribute>
                 </xpath>
 
                 <!--# 隐藏小计-->
                 <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="attributes">
-                    <attribute name="invisible">1</attribute>
+                    <attribute name="invisible">0</attribute>
                 </xpath>
 
                 <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">
@@ -153,7 +160,7 @@
                 </xpath>
 
                 <xpath expr="//group[@name='sale_total']" position="attributes">
-                    <attribute name="invisible">1</attribute>
+                    <attribute name="invisible">0</attribute>
                 </xpath>
 
             </field>

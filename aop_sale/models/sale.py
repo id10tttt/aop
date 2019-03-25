@@ -14,6 +14,31 @@ _logger = logging.getLogger(__name__)
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
+    partner_take_care_id = fields.Many2one('res.partner',
+                                          string='Take Car Address',
+                                          readonly=True,
+                                          required=True,
+                                          states={'draft': [('readonly', False)], 'sent': [('readonly', False)],
+                                                  'sale': [('readonly', False)]},
+                                          help="Take car address for current sales order.")
+
+    @api.multi
+    @api.onchange('partner_id')
+    def onchange_partner_id(self):
+        super(SaleOrder, self).onchange_partner_id()
+        if not self.partner_id:
+            self.update({
+                'partner_take_care_id': False,
+            })
+            return
+
+        addr = self.partner_id.address_get(['take'])
+        values = {
+            'partner_take_care_id': addr['take'],
+        }
+
+        self.update(values)
+
     def _create_delivery_line(self, carrier, price_unit):
         if self.carrier_id.aop_route_ids if self.carrier_id else False:
             delivery_price_value = self._parse_delivery_price(carrier, price_unit)

@@ -8,6 +8,8 @@ from odoo.exceptions import UserError
 import traceback
 import logging
 
+
+
 _logger = logging.getLogger(__name__)
 
 
@@ -17,7 +19,7 @@ class SaleOrderLine(models.Model):
     vin = fields.Many2one('stock.production.lot', 'VIN', domain="[('product_id','=', product_id)]")
 
     service_product_id = fields.Many2one('product.product',
-                                         string='Fee Type',
+                                         string='Product',
                                          related='route_id.service_product_id',
                                          domain=[('sale_ok', '=', True)],
                                          ondelete='restrict')
@@ -25,6 +27,9 @@ class SaleOrderLine(models.Model):
     carrier_id = fields.Many2one('delivery.carrier', string='合同')
 
     carrier_price = fields.Float(string='合同费用', default=0, digits=dp.get_precision('Product Price'))
+
+
+
 
     @api.onchange('carrier_id')
     def _onchange_route_id(self):
