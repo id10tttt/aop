@@ -16,6 +16,7 @@ _logger = logging.getLogger(__name__)
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
+
     vin = fields.Many2one('stock.production.lot', 'VIN', domain="[('product_id','=', product_id)]")
 
     service_product_id = fields.Many2one('product.product',
