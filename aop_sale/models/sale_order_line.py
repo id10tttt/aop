@@ -20,7 +20,7 @@ class SaleOrderLine(models.Model):
 
     service_product_id = fields.Many2one('product.product',
                                          string='Product',
-                                         related='route_id.service_product_id',
+                                         #related='route_id.service_product_id',
                                          domain=[('sale_ok', '=', True)],
                                          ondelete='restrict')
 

@@ -22,6 +22,21 @@ class SaleOrder(models.Model):
                                                   'sale': [('readonly', False)]},
                                           help="Take car address for current sales order.")
 
+    state = fields.Selection([
+        ('draft', 'Quotation'),
+        ('sent', 'Quotation Sent'),
+        ('carrier', 'Quotation Confirm'),
+        ('sale', 'Sales Order'),
+        ('done', 'Locked'),
+        ('cancel', 'Cancelled'),
+    ], string='Status', readonly=True, copy=False, index=True, track_visibility='onchange', track_sequence=3,
+        default='draft')
+
+    @api.multi
+    def action_quotation_confirm(self):
+        self.ensure_one()
+        return self.filtered(lambda o: o.state in ('draft', 'sent')).write({'state': 'carrier'})
+
     @api.multi
     @api.onchange('partner_id')
     def onchange_partner_id(self):

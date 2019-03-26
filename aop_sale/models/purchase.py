@@ -17,7 +17,7 @@ class PurchaseOrderLine(models.Model):
 
     vin = fields.Many2one('stock.production.lot', 'VIN', domain="[('product_id','=', product_id)]")
 
-    service_product_id = fields.Many2one('product.product', string='Fee Type', domain=[('purchase_ok', '=', True)], change_default=True)
+    service_product_id = fields.Many2one('product.product', string='Product', domain=[('purchase_ok', '=', True)], change_default=True)
 
     @api.onchange('product_id')
     def onchange_product_id(self):
