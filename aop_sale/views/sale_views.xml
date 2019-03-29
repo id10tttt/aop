@@ -4,4 +4,21 @@
     <record id="sale.product_template_action" model="ir.actions.act_window">
         <field name="context">{"search_default_services":1, "search_default_filter_to_sell":1, "sale_multi_pricelist_product_template": 1}</field>
     </record>
+
+    <record id="view_quotation_tree_inherit_aop_sal" model="ir.ui.view">
+        <field name="name">sale.order.tree.aop.sale</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+
+            <xpath expr="//tree//field[@name='amount_total']" position="replace">
+                <field name="amount_total" invisible="1" />
+            </xpath>
+
+
+        </field>
+    </record>
+
+
 </odoo>

@@ -20,11 +20,12 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['sale_management', 'sale_stock', 'delivery', 'stock_picking_batch', 'purchase_stock', 'barcodes'],
+    'depends': ['sale', 'sale_management', 'sale_stock', 'delivery', 'stock_picking_batch', 'purchase_stock', 'barcodes'],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'security/aop_sale_groups.xml',
         'views/sale_order_views.xml',
         'views/delivery_carrier.xml',
         'views/sale_views.xml',
