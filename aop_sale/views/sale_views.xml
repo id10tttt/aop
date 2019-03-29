@@ -16,9 +16,6 @@
                 <attribute name="groups">aop_sale.group_aop_sale_scheduling</attribute>
             </field>
 
-
-
-
         </field>
     </record>
 
