@@ -9,12 +9,14 @@
         <field name="name">sale.order.tree.aop.sale</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
-        <field name="mode">primary</field>
+        <field name="mode">extension</field>
         <field name="arch" type="xml">
 
-            <xpath expr="//tree//field[@name='amount_total']" position="replace">
-                <field name="amount_total" invisible="1" />
-            </xpath>
+            <field name="amount_total" position="attributes">
+                <attribute name="groups">aop_sale.group_aop_sale_scheduling</attribute>
+            </field>
+
+
 
 
         </field>
