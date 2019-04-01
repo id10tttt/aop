@@ -18,7 +18,7 @@
                 </xpath>
 
                 <xpath expr="//button[@name='print_quotation']" position="after">
-                    <button name="action_quotation_confirm" id="action_quotation_confirm" string="Quotation Confirm"
+                    <button name="action_quotation_confirm" id="action_quotation_confirm" string="临时订单确认"
                             type="object" groups="aop_sale.group_aop_sale_customers" attrs="{'invisible': [('state', 'not in', ['draft', 'sent'])]}"/>
                 </xpath>
 
@@ -192,7 +192,7 @@
 
 
                 <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">
-                    <field name="service_product_id" domain="[('type','=','service')]" attrs="{'required': 1}" />
+                    <field name="service_product_id" domain="[('type','=','service')]" attrs="{'required': 0}" />
                     <field name="carrier_id"  domain="[('partner_id','=', parent.partner_id)]" />
                     <field name="carrier_price" />
                     <field name="vin"/>
@@ -223,7 +223,7 @@
 
                 <xpath expr="//field[@name='order_line']/form/group/group/field[@name='product_id']" position="after">
 
-                    <!--<field name="service_product_id" domain="[('type','=','service')]" attrs="{'required': 1}" />-->
+                    <!--<field name="service_product_id" domain="[('type','=','service')]" attrs="{'required': 0}" />-->
 
                     <label for="carrier_id"/>
                     <div name='carrier_selection'>

@@ -24,8 +24,8 @@
 
     # always loaded
     'data': [
-        'security/ir.model.access.csv',
         'security/aop_sale_groups.xml',
+        'security/ir.model.access.csv',
         'views/sale_order_views.xml',
         'views/delivery_carrier.xml',
         'views/sale_views.xml',
