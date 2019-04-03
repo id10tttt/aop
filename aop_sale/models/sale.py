@@ -128,3 +128,7 @@ class SaleOrder(models.Model):
                 data.append(move_line.move_id.picking_id.id) if move_line else False
 
         return self.env['stock.picking'].browse(data)
+
+    @api.multi
+    def _action_confirm(self):
+        return super(SaleOrder, self.with_context({'do_not_merge': True}))._action_confirm()

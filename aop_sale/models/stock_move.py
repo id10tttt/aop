@@ -16,3 +16,10 @@ class StockMove(models.Model):
             if not picking_id.picking_purchase_id:
                 picking_id.create_purchase_order()
         return res
+
+    def _search_picking_for_assignation(self):
+        if self._context.get('do_not_merge'):
+            print('self._context', self._context)
+            return False
+        else:
+            return super(StockMove, self)._search_picking_for_assignation()
