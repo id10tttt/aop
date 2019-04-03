@@ -207,7 +207,7 @@ msgstr "联系人"
 #. module: aop_sale
 #: model_terms:ir.ui.view,arch_db:aop_sale.view_order_form_inherit_aop_sale
 msgid "Copy a product"
-msgstr ""
+msgstr "复制产品"
 
 #. module: aop_sale
 #: model_terms:ir.actions.act_window,help:aop_sale.product_template_action_product

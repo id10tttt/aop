@@ -19,12 +19,12 @@
 
                 <xpath expr="//button[@name='print_quotation']" position="after">
                     <button name="action_quotation_confirm" id="action_quotation_confirm" string="临时订单确认"
-                            type="object" groups="aop_sale.group_aop_sale_customers" attrs="{'invisible': [('state', 'not in', ['draft', 'sent'])]}"/>
+                            type="object" groups="aop_sale.group_aop_sale_scheduling" attrs="{'invisible': [('state', 'not in', ['draft', 'sent'])]}"/>
                 </xpath>
 
                 <xpath expr="//button[@name='action_confirm'][1]" position="attributes">
                     <attribute name="attrs">{'invisible': [('state', 'not in', ['carrier'])]}</attribute>
-                    <attribute name="groups">aop_sale.group_aop_sale_scheduling</attribute>
+                    <attribute name="groups">aop_sale.group_aop_sale_customers</attribute>
                 </xpath>
 
                 <xpath expr="//button[@name='action_confirm'][2]" position="attributes">
@@ -35,32 +35,32 @@
                     preview,print和Send By Email按钮也需要调整，这里能看到价格
                 -->
                 <xpath expr="//button[@name='preview_sale_order']" position="attributes">
-                    <attribute name="groups">aop_sale.group_aop_sale_scheduling</attribute>
+                    <attribute name="groups">aop_sale.group_aop_sale_customers</attribute>
                 </xpath>
 
                 <xpath expr="//button[@name='print_quotation'][1]" position="attributes">
                     <attribute name="states">draft,sent,carrier,sale</attribute>
-                    <attribute name="groups">aop_sale.group_aop_sale_scheduling</attribute>
+                    <attribute name="groups">aop_sale.group_aop_sale_customers</attribute>
                 </xpath>
 
                 <xpath expr="//button[@name='print_quotation'][2]" position="attributes">
-                    <attribute name="groups">aop_sale.group_aop_sale_scheduling</attribute>
+                    <attribute name="groups">aop_sale.group_aop_sale_customers</attribute>
                 </xpath>
 
                 <xpath expr="//button[@name='action_quotation_send'][1]" position="attributes">
                     <attribute name="states">draft,sent,carrier,sale</attribute>
-                    <attribute name="groups">aop_sale.group_aop_sale_scheduling</attribute>
+                    <attribute name="groups">aop_sale.group_aop_sale_customers</attribute>
                 </xpath>
 
                 <xpath expr="//button[@name='action_quotation_send'][2]" position="attributes">
-                    <attribute name="groups">aop_sale.group_aop_sale_scheduling</attribute>
+                    <attribute name="groups">aop_sale.group_aop_sale_customers</attribute>
                 </xpath>
 
                 <xpath expr="//button[@name='action_cancel']" position="attributes">
 
                     <attribute name="states">draft,sent,carrier,sale</attribute>
 
-                    <attribute name="groups">aop_sale.group_aop_sale_scheduling</attribute>
+                    <attribute name="groups">aop_sale.group_aop_sale_customers</attribute>
                 </xpath>
 
                 <xpath expr="//button[@name='action_view_delivery']" position="after">
@@ -153,7 +153,7 @@
                 <!--# 隐藏价格, 仅对调度可见-->
                 <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="attributes">
 
-                    <attribute name="groups">aop_sale.group_aop_sale_scheduling</attribute>
+                    <attribute name="groups">aop_sale.group_aop_sale_customers</attribute>
 
                     <!--
                     <attribute name="attrs">{'invisible': [('state', 'in', ['draft'])], 'readonly': [('qty_invoiced', '&gt;', 0)]}</attribute>
@@ -162,27 +162,27 @@
 
                 <!--# 隐藏税率-->
                 <xpath expr="//field[@name='order_line']/tree/field[@name='tax_id']" position="attributes">
-                    <attribute name="groups">aop_sale.group_aop_sale_scheduling</attribute>
+                    <attribute name="groups">aop_sale.group_aop_sale_customers</attribute>
                 </xpath>
 
                 <!--# 隐藏小计-->
                 <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="attributes">
-                    <attribute name="groups">aop_sale.group_aop_sale_scheduling</attribute>
+                    <attribute name="groups">aop_sale.group_aop_sale_customers</attribute>
                 </xpath>
 
                 <!--# 隐藏未税金额-->
                 <xpath expr="//field[@name='amount_untaxed']" position="attributes">
-                    <attribute name="groups">aop_sale.group_aop_sale_scheduling</attribute>
+                    <attribute name="groups">aop_sale.group_aop_sale_customers</attribute>
                 </xpath>
 
                 <!--# 隐藏税率金额-->
                 <xpath expr="//field[@name='amount_tax']" position="attributes">
-                    <attribute name="groups">aop_sale.group_aop_sale_scheduling</attribute>
+                    <attribute name="groups">aop_sale.group_aop_sale_customers</attribute>
                 </xpath>
 
                 <!--# 隐藏总计金额-->
                 <xpath expr="//field[@name='amount_total']" position="attributes">
-                    <attribute name="groups">aop_sale.group_aop_sale_scheduling</attribute>
+                    <attribute name="groups">aop_sale.group_aop_sale_customers</attribute>
                 </xpath>
 
 
@@ -193,8 +193,8 @@
 
                 <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">
                     <field name="service_product_id" domain="[('type','=','service')]" attrs="{'required': 0}" />
-                    <field name="carrier_id"  domain="[('partner_id','=', parent.partner_id)]" />
-                    <field name="carrier_price" />
+                    <field name="carrier_id"  domain="[('partner_id','=', parent.partner_id)]" groups="aop_sale.group_aop_sale_customers" />
+                    <field name="carrier_price" groups="aop_sale.group_aop_sale_customers" />
                     <field name="vin"/>
                 </xpath>
 
@@ -230,7 +230,7 @@
                         <div>
                             <field name="carrier_id" domain="[('partner_id','=', parent.partner_id)]" class="oe_inline"
                                    options="{'no_create': True, 'no_open': True}"
-                                   attrs="{'readonly':[('state','not in',('draft','sent'))]}"/>
+                                   attrs="{'readonly':[('state','not in',('draft','sent'))]}" groups="aop_sale.group_aop_sale_customers"/>
 
                         </div>
 
