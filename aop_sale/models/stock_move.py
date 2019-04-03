@@ -19,7 +19,6 @@ class StockMove(models.Model):
 
     def _search_picking_for_assignation(self):
         if self._context.get('do_not_merge'):
-            print('self._context', self._context)
             return False
         else:
             return super(StockMove, self)._search_picking_for_assignation()
