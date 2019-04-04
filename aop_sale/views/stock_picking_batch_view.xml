@@ -26,7 +26,7 @@
 
                     <field name="picking_purchase_id"
                            string="供方任务订单"
-                           attrs="{'invisible': [('picking_purchase_id', '!=', False)]}"
+                           attrs="{'invisible': [('picking_purchase_id', '=', False)]}"
                        />
 
                 </field>
