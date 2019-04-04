@@ -23,9 +23,19 @@
                 <field name="src_partner_id" string="源地址"/>
                 <field name="des_partner_id" string="目的地址"/>
                 <field name="picking_purchase_id"
-                       string="采购订单"
+                       string="供方任务订单"
                        attrs="{'invisible': [('picking_purchase_id', '=', False)]}"/>
             </xpath>
+
+            <xpath expr="//button[@name='action_see_packages']" position="attributes">
+                    <attribute name="string">车厢</attribute>
+            </xpath>
+
+             <xpath expr="//page[2]/button[@name='put_in_pack']" position="attributes">
+                    <attribute name="string">放入车厢</attribute>
+            </xpath>
+
+
 
         </field>
     </record>

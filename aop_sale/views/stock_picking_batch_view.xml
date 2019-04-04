@@ -7,9 +7,35 @@
         <field name="model">stock.picking.batch</field>
         <field name="inherit_id" ref="stock_picking_batch.stock_picking_batch_form"/>
         <field name="arch" type="xml">
-                    <field name="user_id" position="after">
-                        <field name="car_no"/>
-                    </field>
+
+                 <xpath expr="/form/header/button[last()]" position="after">
+
+                    <button name="create_purchase_order"
+                            string="创建供方任务"
+                            type="object"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('picking_purchase_id', '!=', False)]}"
+                            />
+
+                </xpath>
+
+                <field name="user_id" position="after">
+                    <field name="car_no"/>
+
+                    <field name="partner_id" string="供应商" widget="res_partner_many2one" domain="[('supplier','=',True)]" />
+
+                    <field name="picking_purchase_id"
+                           string="供方任务订单"
+                           attrs="{'invisible': [('picking_purchase_id', '!=', False)]}"
+                       />
+
+                </field>
+
+
+
+                <xpath expr="//separator" position="attributes">
+                    <attribute name="string">调度</attribute>
+                </xpath>
         </field>
     </record>
 

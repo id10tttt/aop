@@ -37,6 +37,7 @@
         'views/purchase_order_views.xml',
         #'views/sale_stock_views.xml',
         'views/stock_location_route.xml',
-        'views/subsidy_debit_order.xml'
+        'views/subsidy_debit_order.xml',
+        'views/stock_quant_views.xml',
     ],
 }
