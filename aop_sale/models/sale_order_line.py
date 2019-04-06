@@ -27,7 +27,7 @@ class SaleOrderLine(models.Model):
 
     carrier_id = fields.Many2one('delivery.carrier', string='合同')
 
-    carrier_price = fields.Float(string='合同费用', default=0, digits=dp.get_precision('Product Price'))
+    carrier_price = fields.Float(string='合同费用', related='carrier_id.fixed_price', store=True, default=0, digits=dp.get_precision('Product Price'))
 
 
 
@@ -38,7 +38,7 @@ class SaleOrderLine(models.Model):
         _logger.info({
             'carrier_id': self.carrier_id
         })
-        self.carrier_price = self.carrier_id.fixed_price
+        #self.carrier_price = self.carrier_id.fixed_price
 
         route_ids = [aop_id.route_id.id for aop_id in self.carrier_id.aop_route_id ]
 
