@@ -145,7 +145,7 @@
                                             'default_lst_price': price_unit,
                                             'default_description_sale': name
                                         }"
-                                        string="货物2"
+                                        string="货物"
                                     />
 
                 </xpath>
