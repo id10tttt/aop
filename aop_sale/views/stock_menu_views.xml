@@ -17,7 +17,7 @@
     </record>
 
     <record id="product_template_action_service_product" model="ir.actions.act_window">
-        <field name="name">费目</field>
+        <field name="name">服务产品</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">product.template</field>
         <field name="view_mode">kanban,tree,form</field>
@@ -31,10 +31,10 @@
         </field>
     </record>
 
-    <menuitem id="menu_product_variant_config_stock" name="货物" action="product_template_action_product"
+    <menuitem id="menu_product_variant_config_stock" name="服务产品" action="product_template_action_product"
         parent="stock.menu_stock_inventory_control" sequence="-1"/>
 
-    <menuitem id="menu_service_product_variant_config_stock" name="费目" action="product_template_action_service_product"
+    <menuitem id="menu_service_product_variant_config_stock" name="服务产品" action="product_template_action_service_product"
         parent="stock.menu_stock_inventory_control" sequence="0"/>
 
 </odoo>
