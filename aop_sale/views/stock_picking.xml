@@ -17,11 +17,18 @@
 
             </xpath>
 
+            <xpath expr="//field[@name='picking_type_id']" position="after">
+                <field name="move_id_without_package" />
+
+            </xpath>
+
 
 
             <xpath expr="//field[@name='origin']" position="after">
+                <!--
                 <field name="src_partner_id" string="源地址"/>
                 <field name="des_partner_id" string="目的地址"/>
+                -->
                 <field name="picking_purchase_id"
                        string="供方任务订单"
                        attrs="{'invisible': [('picking_purchase_id', '=', False)]}"/>

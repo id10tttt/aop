@@ -22,3 +22,8 @@ class StockMove(models.Model):
             return False
         else:
             return super(StockMove, self)._search_picking_for_assignation()
+
+    def _get_new_picking_values(self):
+        vals = super(StockMove, self)._get_new_picking_values()
+        vals['move_id_without_package'] = self.id
+        return vals

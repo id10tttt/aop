@@ -9,4 +9,4 @@ class ProductProduct(models.Model):
 
     #vin_code = fields.Char('VIN Code')
     vin = fields.Char('VIN')    #由于其它地方都是vin,因此修改了下定义
-    type = fields.Selection(selection_add=[('storable_service', 'Storable Service')])
+    #type = fields.Selection(selection_add=[('storable_service', 'Storable Service')])
