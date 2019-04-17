@@ -29,7 +29,7 @@
                 </xpath>
 
                 <xpath expr="//page[1]" position="before">
-                    <page name="route_id" string="明细">
+                    <page name="route_id" string="合同条款">
                         <field name="aop_route_id" string="路由">
                             <tree>
                                 <field name="product_id"/>
