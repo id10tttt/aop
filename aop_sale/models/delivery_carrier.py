@@ -47,6 +47,8 @@ class DeliveryCarrier(models.Model):
 
 
 
+
+
 class ContractVersion(models.Model):
     _name = 'contract.version'
 

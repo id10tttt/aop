@@ -11,6 +11,13 @@
                 <field name="product_id" domain="[('type','=','service')]" />
             </field>
 
+            <field name="code" position="after">
+                <label for="aging" />
+                <div>
+                    <field name="aging" class="oe_inline" style="vertical-align:baseline"/>天
+                </div>
+            </field>
+
             <xpath expr="//group" position="after">
                 <group>
                     <group>

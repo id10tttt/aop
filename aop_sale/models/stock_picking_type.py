@@ -11,4 +11,5 @@ class StockPickingType(models.Model):
 
     product_id = fields.Many2one('product.product')
 
+    aging = fields.Float('时效', default=1)
 

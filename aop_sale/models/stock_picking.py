@@ -25,6 +25,8 @@ class StockPicking(models.Model):
                                                domain=['|', ('package_level_id', '=', False),
                                                        ('picking_type_entire_packs', '=', False)])
 
+    product_id = fields.Many2one(string='Product', related='move_id_without_package.product_id')
+
 
 
     def create_purchase_order(self):

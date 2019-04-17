@@ -19,6 +19,8 @@ class AopRoute(models.Model):
 
     aop_id = fields.Many2one('delivery.carrier', string='交货方式')
 
+    product_id = fields.Many2one('product.product', string='服务产品', domain=[('type', '=', 'service')])
+
     # 线路的 ID
     def _parse_aop_route_line(self, route_line_ids):
         '''

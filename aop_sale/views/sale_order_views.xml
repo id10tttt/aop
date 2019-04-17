@@ -196,8 +196,12 @@
 
                 <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">
                     <field name="service_product_id" string="服务产品" domain="[('type','=','service')]" attrs="{'required': 0}" />
+
                     <field name="carrier_id"  domain="[('partner_id','=', parent.partner_id)]" groups="aop_sale.group_aop_sale_customers" />
                     <field name="carrier_price" attrs="{'readonly':1}" groups="aop_sale.group_aop_sale_customers" />
+                    <!--
+                    <field name="aging" string="时效(天)" attrs="{'readonly':1}" />
+                    -->
                     <field name="vin"/>
                 </xpath>
 

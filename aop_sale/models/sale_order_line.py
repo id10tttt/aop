@@ -29,8 +29,7 @@ class SaleOrderLine(models.Model):
 
     carrier_price = fields.Float(string='合同费用', related='carrier_id.fixed_price', store=True, default=0, digits=dp.get_precision('Product Price'))
 
-
-
+    #aging = fields.Float('时效', related='carrier_id.aging', store=True,  default=1)
 
     @api.onchange('carrier_id')
     def _onchange_route_id(self):
