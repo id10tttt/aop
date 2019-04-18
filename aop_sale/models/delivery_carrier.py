@@ -50,7 +50,7 @@ class DeliveryCarrier(models.Model):
 
     #partner_id = fields.Many2one('res.partner', 'Partner')
 
-    product_id = fields.Many2one('product.product', string='货物', required=False, ondelete='restrict')
+    product_id = fields.Many2one('product.product', string='货物', domain=[('type', '=', 'product')], required=False, ondelete='restrict')
 
     # aop_route_id = fields.Many2one('aop.route', 'Aop Route ID')
     aop_route_id = fields.One2many('aop.route', 'aop_id', 'Aop Route ID')

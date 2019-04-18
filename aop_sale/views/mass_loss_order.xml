@@ -217,7 +217,10 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem id="mass_loss_order_root" name="质损单"/>
+        <menuitem id="mass_loss_order_root"
+                  name="质损单"
+                  web_icon="aop_sale,static/description/mass_loss_icon.png"
+        />
         <menuitem id="mass_loss_order_menu" parent="mass_loss_order_root" name="质损单"/>
 
         <menuitem id="mass_loss_order_child_menu_order" parent="mass_loss_order_menu" name="质损单"

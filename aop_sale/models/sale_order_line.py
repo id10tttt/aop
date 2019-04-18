@@ -35,6 +35,8 @@ class SaleOrderLine(models.Model):
 
     carrier_price = fields.Float(string='合同费用', default=0)
 
+    #carrier_price = fields.Monetary(string='合同费用', store=True, readonly=True, compute='_carrier_price')
+
     #aging = fields.Float('时效', related='carrier_id.aging', store=True,  default=1)
 
     @api.onchange('contract_id')
@@ -58,6 +60,22 @@ class SaleOrderLine(models.Model):
             return {
                 'domain': []
             }
+
+
+
+    @api.onchange('contract_id','route_id')
+    def _onchange_carrier_price(self):
+        if self.contract_id and self.route_id:
+
+            carrier = self.env['delivery.carrier'].search([
+                ('contract_id', '=', self.contract_id.id ), ('route_id', '=', self.route_id.id)
+            ])
+
+            if carrier:
+                self.carrier_price = carrier.fixed_price
+
+
+
 
     @api.multi
     @api.onchange('product_id')
