@@ -3,15 +3,12 @@
 from odoo import models, fields, api
 
 
-class DeliveryCarrier(models.Model):
-    _inherit = 'delivery.carrier'
+class AopContract(models.Model):
+    _name = 'aop.contract'
+
+    name = fields.Char('合同名称', required=True)
 
     partner_id = fields.Many2one('res.partner', 'Partner')
-
-    # aop_route_id = fields.Many2one('aop.route', 'Aop Route ID')
-    aop_route_id = fields.One2many('aop.route', 'aop_id', 'Aop Route ID')
-
-    aop_route_ids = fields.Many2many('aop.route', string='AOP route')
 
     serial_number = fields.Char(string='合同编号')
 
@@ -40,6 +37,32 @@ class DeliveryCarrier(models.Model):
         ],
         string='合同类型',
         default='buyer')
+
+    delivery_carrier_ids = fields.One2many('delivery.carrier', 'contract_id', string="合同条款")
+
+
+
+
+
+
+class DeliveryCarrier(models.Model):
+    _inherit = 'delivery.carrier'
+
+    #partner_id = fields.Many2one('res.partner', 'Partner')
+
+    product_id = fields.Many2one('product.product', string='货物', required=False, ondelete='restrict')
+
+    # aop_route_id = fields.Many2one('aop.route', 'Aop Route ID')
+    aop_route_id = fields.One2many('aop.route', 'aop_id', 'Aop Route ID')
+
+    aop_route_ids = fields.Many2many('aop.route', string='AOP route')
+
+    contract_id = fields.Many2one('aop.contract', 'contract')
+
+    route_id = fields.Many2one('stock.location.route', '路由')
+
+    service_product_id = fields.Many2one(string='服务产品', related='route_id.service_product_id')
+
 
 
 

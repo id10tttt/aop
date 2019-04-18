@@ -27,21 +27,27 @@ class SaleOrderLine(models.Model):
 
     carrier_id = fields.Many2one('delivery.carrier', string='合同')
 
-    carrier_price = fields.Float(string='合同费用', related='carrier_id.fixed_price', store=True, default=0, digits=dp.get_precision('Product Price'))
+    contract_id = fields.Many2one('aop.contract', string='合同')
+
+
+
+    #carrier_price = fields.Float(string='合同费用', related='carrier_id.fixed_price', store=True, default=0, digits=dp.get_precision('Product Price'))
+
+    carrier_price = fields.Float(string='合同费用', default=0)
 
     #aging = fields.Float('时效', related='carrier_id.aging', store=True,  default=1)
 
-    @api.onchange('carrier_id')
+    @api.onchange('contract_id')
     def _onchange_route_id(self):
 
         _logger.info({
-            'carrier_id': self.carrier_id
+            'contract_id': self.contract_id
         })
-        #self.carrier_price = self.carrier_id.fixed_price
+        #self.carrier_price = self.contract_id.fixed_price
 
-        route_ids = [aop_id.route_id.id for aop_id in self.carrier_id.aop_route_id ]
+        route_ids = [aop_id.route_id.id for aop_id in self.contract_id.delivery_carrier_ids ]
 
-        if self.order_id.partner_id and self.carrier_id:
+        if self.order_id.partner_id and self.contract_id:
             return {
                 'domain': {
                     'route_id': [('id', 'in', route_ids)]
