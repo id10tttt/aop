@@ -8,3 +8,6 @@ access_stock_production_lot_user_scheduling,stock.production.lot scheduling user
 access_aop_contract,access_aop_contract,model_aop_contract,base.group_user,1,1,1,1
 access_contract_version,access_contract_version,model_contract_version,base.group_user,1,1,1,1
 access_contract_project,access_contract_project,model_contract_project,base.group_user,1,1,1,1
+access_mass_loss_order,access_mass_loss_order,model_mass_loss_order,base.group_user,1,1,1,1
+access_mass_loss_type,access_mass_loss_type,model_mass_loss_type,base.group_user,1,1,1,1
+access_mass_loss_part,access_mass_loss_part,model_mass_loss_part,base.group_user,1,1,1,1
