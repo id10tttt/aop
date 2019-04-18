@@ -15,3 +15,4 @@ from . import subsidy_debit_order
 from . import stock_move
 from . import res_partner
 from . import stock_rule
+from . import mass_loss_order
