@@ -27,6 +27,12 @@ class StockPicking(models.Model):
 
     product_id = fields.Many2one(string='Product', related='move_id_without_package.product_id')
 
+    product_uom_qty = fields.Float(
+        '初始数量',
+        related='move_id_without_package.product_uom_qty')
+
+    quantity_done = fields.Float('完成数量', related='move_id_without_package.quantity_done')
+
 
 
     def create_purchase_order(self):
