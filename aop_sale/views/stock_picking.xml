@@ -49,8 +49,24 @@
                     <attribute name="string">车厢</attribute>
             </xpath>
 
+            <xpath expr="//notebook/page[2]/field[@name='move_ids_without_package']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+            </xpath>
+
+             <xpath expr="//notebook/page[2]/button[@name='404']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+            </xpath>
+
              <xpath expr="//page[2]/button[@name='put_in_pack']" position="attributes">
                     <attribute name="string">放入车厢</attribute>
+            </xpath>
+
+            <xpath expr="//notebook/page[@name='extra']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//notebook/page[@name='note']/field[@name='note']" position="attributes">
+                    <attribute name="placeholder"></attribute>
             </xpath>
 
 
