@@ -10,7 +10,7 @@ _logger = logging.getLogger(__name__)
 class StockLocationRoute(models.Model):
     _inherit = 'stock.location.route'
 
-    service_product_id = fields.Many2one('product.product', string='Product')
+    service_product_id = fields.Many2one('product.product', string='服务产品')
 
 
 

@@ -39,7 +39,10 @@ class SaleOrderLine(models.Model):
 
     #aging = fields.Float('时效', related='carrier_id.aging', store=True,  default=1)
 
-    @api.onchange('contract_id')
+
+
+
+    #@api.onchange('contract_id')
     def _onchange_route_id(self):
 
         _logger.info({
@@ -61,15 +64,39 @@ class SaleOrderLine(models.Model):
                 'domain': []
             }
 
+    @api.onchange('route_id')
+    def _onchange_route_id_by_partner(self):
+
+        res = {
+            'domain': []
+        }
+
+        if self.order_id.partner_id:
+            contract = self.env['aop.contract'].search([
+                ('partner_id', '=', self.order_id.partner_id.id)
+            ])
+
+            route_ids = [aop_id.route_id.id for aop_id in contract.delivery_carrier_ids]
+
+            res.update({
+                'domain': {
+                    'route_id': [('id', 'in', route_ids)]
+
+                }
+            })
+
+        return res
 
 
-    @api.onchange('contract_id','route_id')
+    @api.onchange('route_id')
     def _onchange_carrier_price(self):
-        if self.contract_id and self.route_id:
+
+
+        if self.route_id:
 
             carrier = self.env['delivery.carrier'].search([
-                ('contract_id', '=', self.contract_id.id ), ('route_id', '=', self.route_id.id)
-            ])
+                ('route_id', '=', self.route_id.id)
+            ], limit=1)
 
             if carrier:
                 self.carrier_price = carrier.fixed_price

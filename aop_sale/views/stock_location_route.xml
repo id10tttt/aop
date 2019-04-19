@@ -6,10 +6,20 @@
             <field name="model">stock.location.route</field>
             <field name="inherit_id" ref="stock.stock_location_route_form_view"/>
             <field name="arch" type="xml">
+
+
+
+                <xpath expr="//label[@for='name']" position="attributes">
+                     <attribute name="string">路由</attribute>
+                </xpath>
+
+
+
                 <xpath expr="//field[@name='product_selectable']/.." position="after">
 
 
                     <field name="service_product_id"
+                           string="服务产品"
                            domain="[('type','=','service')]"
                            options="{'no_quick_create': True, 'no_create_edit': True}"
 
