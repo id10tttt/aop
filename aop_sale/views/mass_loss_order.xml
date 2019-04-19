@@ -9,6 +9,7 @@
                 <form>
                     <header>
                         <field name="state" string="状态" readonly="1" widget="statusbar"/>
+                        <button name="action_return_to_factory" id="action_return_to_factory" string="返厂" class="btn-primary" type="object" />
                     </header>
                     <sheet>
 

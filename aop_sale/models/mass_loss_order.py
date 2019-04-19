@@ -46,6 +46,10 @@ class MassLossOrder(models.Model):
     buyout_deductions_diff = fields.Float('Buyout deductions')
     case_number = fields.Char('Case Number')
 
+    @api.multi
+    def action_return_to_factory(self):
+        pass
+
 
 class MassLossType(models.Model):
     _name = 'mass.loss.type'
