@@ -12,10 +12,16 @@
 
                 </xpath>
 
+                <xpath expr="//field[@name='delivery_count']" position="attributes">
+                    <attribute name="string">任务</attribute>
+                </xpath>
+
                 <!-- 添加1个合同价格确认的state -->
                 <xpath expr="//field[@name='state']" position="attributes">
                     <attribute name="statusbar_visible">draft,sent,carrier,sale</attribute>
                 </xpath>
+
+
 
                 <xpath expr="//button[@name='print_quotation']" position="after">
                     <button name="action_quotation_confirm" id="action_quotation_confirm" string="临时订单确认"
