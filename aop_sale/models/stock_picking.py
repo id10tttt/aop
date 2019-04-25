@@ -21,7 +21,7 @@ class StockPicking(models.Model):
 
     picking_purchase_id = fields.Many2one('purchase.order', 'Purchase')
 
-    move_id_without_package = fields.Many2one('stock.move', string="Stock moves not in package",
+    move_id_without_package = fields.Many2one('stock.move', string="库存移动",
                                                domain=['|', ('package_level_id', '=', False),
                                                        ('picking_type_entire_packs', '=', False)])
 
