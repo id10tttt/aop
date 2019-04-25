@@ -220,7 +220,7 @@
                 </xpath>
 
                 <xpath expr="//field[@name='order_line']/tree/field[@name='route_id']" position="before">
-
+                    <field name="receipt_no" groups="sales_team.group_sale_manager"/>
                     <field name="plan_date" groups="sales_team.group_sale_manager"/>
                     <!--
                     <field name="instruction_type" groups="sales_team.group_sale_manager"/>
@@ -231,6 +231,7 @@
                     <field name="manufacturer_short_name" groups="sales_team.group_sale_manager"/>
                     <field name="vehicle_model_type" groups="sales_team.group_sale_manager"/>
                     <field name="manufacturer_common_name" groups="sales_team.group_sale_manager"/>
+                    <field name="dealer_partner_id" groups="sales_team.group_sale_manager"/>
                     <field name="station_start_end" groups="aop_sale.group_aop_sale_scheduling"/>
 
                 </xpath>

@@ -66,7 +66,7 @@
                                  <tree >
                                      <field name="name" string="条款名称"/>
                                      <field name="product_id" string="货物"/>
-                                     <field name="route_id" />
+                                     <field name="service_product_id" string="服务产品" />
 
                                 </tree>
 
@@ -110,8 +110,13 @@
 
 
                 <xpath expr="//field[@name='product_id']" position="after">
+
+                    <!--
                     <field name="route_id" />
+                    -->
+
                     <field name="service_product_id" />
+
 
                 </xpath>
 
