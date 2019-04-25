@@ -39,7 +39,52 @@ class SaleOrderLine(models.Model):
 
     #aging = fields.Float('时效', related='carrier_id.aging', store=True,  default=1)
 
+    station_start_end = fields.Char(string='发站-到站')
 
+    receipt_no = fields.Char(string='交接单号')
+
+    plan_date = membership_start = fields.Date(compute='_compute_plan_date',
+        string ='计划日期', store=True)
+
+    #就是服务产品
+    #instruction_type = fields.Selection([
+    #    ('global', '全局指令'),
+    #    ('otd', 'OTD指令'),
+    #    ('composite', '复合指令'),
+    #    ('two', '两端指令'),
+    #    ('only', '只装车指令'),
+    #    ], string='Invoice Status', default='global')
+
+    oems_warehouse = fields.Char(string='主机厂库房')
+
+    oems_order_no = fields.Char(string='订单号')
+
+    income_settle_partner_id = fields.Many2one('res.partner', string='收入结算单位')
+
+    manufacturer_short_name = fields.Char(string='厂商简称')
+
+    vehicle_model_type = fields.Selection([
+        ('changan', '长安轿车'),
+        ('wulin', '柳州五菱')
+
+        ], string='车型型号', default='changan')
+
+    manufacturer_common_name = fields.Char(string='俗称')
+
+    dealer_partner_id = fields.Many2one('res.partner', string='经销商名称')
+
+
+
+
+
+
+
+
+
+    def _compute_plan_date(self):
+        today = fields.Date.today()
+        for line in self:
+            line.plan_date = today
 
 
     #@api.onchange('contract_id')

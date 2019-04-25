@@ -22,3 +22,20 @@ class ProcurementGroup(models.Model):
     #   values.update({'warehouse_id': False})
 
     #    return super(ProcurementGroup, self)._get_rule(product_id, location_id, values)
+
+
+#class BundleStockRule(models.Model):
+#    _name = 'bundle.stock.rule'
+
+#    name = fields.Char('名称', required=True)
+
+#    service_product_id = fields.Many2one('product.product', string='服务产品', domain=[('purchase_ok', '=', '')])
+
+#    rule_ids = fields.Many2many(
+#        comodel_name='stock.rule',  # related model
+#        relation='stock_rule_bundle_rel',  # relation table name
+#        column1='rule_id',  # field for "this" record
+#        column2='bundle_id',  # field for "other" record
+#        string='规则组')
+
+

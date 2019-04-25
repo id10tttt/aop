@@ -111,6 +111,13 @@
 
                 </xpath>
 
+                <xpath expr="//field[@name='pricelist_id']" position="after">
+
+                    <field name="write_uid" string="修改人" attrs="{'readonly': 1}" groups="sales_team.group_sale_manager" />
+                    <field name="write_date" string="修改时间" attrs="{'readonly': 1}" groups="sales_team.group_sale_manager" />
+
+                </xpath>
+
                 <!--# 隐藏付款条款-->
                 <xpath expr="//field[@name='payment_term_id']" position="attributes">
                     <attribute name="invisible">1</attribute>
@@ -212,9 +219,26 @@
                     <field name="vin"/>
                 </xpath>
 
+                <xpath expr="//field[@name='order_line']/tree/field[@name='route_id']" position="before">
+
+                    <field name="plan_date" groups="sales_team.group_sale_manager"/>
+                    <!--
+                    <field name="instruction_type" groups="sales_team.group_sale_manager"/>
+                    -->
+                     <field name="oems_warehouse" groups="sales_team.group_sale_manager"/>
+                     <field name="oems_order_no" groups="sales_team.group_sale_manager"/>
+                     <field name="income_settle_partner_id" groups="sales_team.group_sale_manager"/>
+                    <field name="manufacturer_short_name" groups="sales_team.group_sale_manager"/>
+                    <field name="vehicle_model_type" groups="sales_team.group_sale_manager"/>
+                    <field name="manufacturer_common_name" groups="sales_team.group_sale_manager"/>
+                    <field name="station_start_end" groups="aop_sale.group_aop_sale_scheduling"/>
+
+                </xpath>
+
                 <xpath expr="//field[@name='order_line']/tree/field[@name='route_id']" position="attributes">
 
-                    <attribute name="string">发站-到站</attribute>
+                    <attribute name="string">路由</attribute>
+                    <attribute name="groups">aop_sale.group_aop_sale_customers</attribute>
                     <!--
                     <attribute name="domain">[('partner_id','=', parent.partner_id)]</attribute>
                     -->
