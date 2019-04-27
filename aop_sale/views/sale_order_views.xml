@@ -105,7 +105,7 @@
 
 
                 <xpath expr="//field[@name='partner_shipping_id']" position="attributes">
-                    <attribute name="string">Delivery Car Address</attribute>
+                    <attribute name="string">经销商送车地址</attribute>
                     <attribute name="domain">[('parent_id','=', partner_id), ('type','=', 'delivery')]</attribute>
                     <attribute name="options">{'no_create': True, 'no_open': True}</attribute>
 
@@ -115,6 +115,12 @@
 
                     <field name="write_uid" string="修改人" attrs="{'readonly': 1}" groups="sales_team.group_sale_manager" />
                     <field name="write_date" string="修改时间" attrs="{'readonly': 1}" groups="sales_team.group_sale_manager" />
+
+                </xpath>
+
+                <xpath expr="//field[@name='pricelist_id']" position="attributes">
+
+                   <attribute name="invisible">1</attribute>
 
                 </xpath>
 
@@ -210,6 +216,7 @@
                 <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">
                     <field name="service_product_id" string="服务产品" domain="[('type','=','service')]" attrs="{'required': 0}" />
 
+                    <field name="spare_part_ids" widget="many2many_tags" />
                     <field name="contract_id" invisible="1" domain="[('partner_id','=', parent.partner_id)]" groups="aop_sale.group_aop_sale_customers" />
                     <field name="carrier_price" invisible="1" attrs="{'readonly':0}" groups="aop_sale.group_aop_sale_customers" />
 

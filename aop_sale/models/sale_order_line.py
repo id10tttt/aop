@@ -73,6 +73,11 @@ class SaleOrderLine(models.Model):
 
     dealer_partner_id = fields.Many2one('res.partner', string='经销商名称')
 
+    #spare_part_ids = fields.One2many('product.product', 'sale_order_line_id', '备品备件')
+    spare_part_ids = fields.Many2many('product.product', string='备品备件')
+
+
+
 
 
 
