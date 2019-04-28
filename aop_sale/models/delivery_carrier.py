@@ -61,7 +61,8 @@ class DeliveryCarrier(models.Model):
 
     route_id = fields.Many2one('stock.location.route', '路由')
 
-    service_product_id = fields.Many2one(string='服务产品', related='route_id.service_product_id')
+    #service_product_id = fields.Many2one(string='服务产品', related='route_id.service_product_id')
+    service_product_id = fields.Many2one('product.product', string='服务产品')
 
 
 

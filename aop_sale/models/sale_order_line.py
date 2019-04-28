@@ -77,15 +77,6 @@ class SaleOrderLine(models.Model):
     spare_part_ids = fields.Many2many('product.product', string='备品备件')
 
 
-
-
-
-
-
-
-
-
-
     def _compute_plan_date(self):
         today = fields.Date.today()
         for line in self:
@@ -126,7 +117,17 @@ class SaleOrderLine(models.Model):
                 ('partner_id', '=', self.order_id.partner_id.id)
             ])
 
-            route_ids = [aop_id.route_id.id for aop_id in contract.delivery_carrier_ids]
+            route_ids = []
+
+            for line in contract.delivery_carrier_ids:
+                route_id = self.env['stock.location.route'].search([
+                    ('service_product_id', '=', line.service_product_id.id)
+                ])
+                if route_id:
+                    route_ids.append(route_id.id)
+
+
+            #route_ids = [aop_id.route_id.id for aop_id in contract.delivery_carrier_ids]
 
             res.update({
                 'domain': {
