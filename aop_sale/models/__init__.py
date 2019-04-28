@@ -17,3 +17,4 @@ from . import res_partner
 from . import stock_rule
 from . import mass_loss_order
 from . import stock_warehouse
+from . import account_invoice

@@ -11,3 +11,4 @@ access_contract_project,access_contract_project,model_contract_project,base.grou
 access_mass_loss_order,access_mass_loss_order,model_mass_loss_order,base.group_user,1,1,1,1
 access_mass_loss_type,access_mass_loss_type,model_mass_loss_type,base.group_user,1,1,1,1
 access_mass_loss_part,access_mass_loss_part,model_mass_loss_part,base.group_user,1,1,1,1
+access_account_tax_invoice,access_account_tax_invoice,model_account_tax_invoice,base.group_user,1,1,1,1

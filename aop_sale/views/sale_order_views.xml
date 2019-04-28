@@ -22,6 +22,11 @@
                 </xpath>
 
 
+                <xpath expr="//button[@name='action_quotation_send'][1]" position="before">
+                    <button name="%(aop_sale.action_view_sale_advance_payment_tax_inv)d" string="创建发票" type="action" class="btn-primary" />
+
+                </xpath>
+
                 <xpath expr="//button[@name='%(sale.action_view_sale_advance_payment_inv)d'][1]" position="attributes">
                     <attribute name="string">创建台账</attribute>
                     <attribute name="name">%(aop_sale.action_view_sale_advance_payment_inv)d</attribute>
@@ -32,10 +37,7 @@
                     <attribute name="name">%(aop_sale.action_view_sale_advance_payment_inv)d</attribute>
                 </xpath>
 
-                <xpath expr="//button[@name='%(aop_sale.action_view_sale_advance_payment_inv)d']" position="after">
-                    <button name="%(sale.action_view_sale_advance_payment_inv)d" string="创建发票" type="action" class="btn-primary" />
 
-                </xpath>
 
                  <xpath expr="//button[@name='action_quotation_send'][3]" position="attributes">
                      <attribute name="attrs">{'invisible': 1}</attribute>
@@ -44,6 +46,10 @@
                 <xpath expr="//button[@name='action_quotation_send'][4]" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
+
+                <field name="invoice_count" position="attributes">
+                    <attribute name="string">收入台账</attribute>
+                </field>
 
                 <xpath expr="//button[@name='print_quotation']" position="after">
                     <button name="action_quotation_confirm" id="action_quotation_confirm" string="临时订单确认"
