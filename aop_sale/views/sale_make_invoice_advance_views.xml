@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="sale.action_view_sale_advance_payment_inv" model="ir.actions.act_window">
+            <field name="name">订单</field>
+
+        </record>
+
+</odoo>

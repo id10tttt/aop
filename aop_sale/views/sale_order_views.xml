@@ -22,6 +22,13 @@
                 </xpath>
 
 
+                <xpath expr="//button[@name='312'][1]" position="attributes">
+                    <attribute name="string">创建台账</attribute>
+                </xpath>
+
+                <xpath expr="//button[@name='312'][2]" position="attributes">
+                    <attribute name="string">创建台账</attribute>
+                </xpath>
 
                 <xpath expr="//button[@name='print_quotation']" position="after">
                     <button name="action_quotation_confirm" id="action_quotation_confirm" string="临时订单确认"
