@@ -61,7 +61,7 @@
                             <field name="number" readonly="1" class="oe_inline" attrs="{'invisible': [('state','in',('draft',))]}"/>
                         </div>
                         <div  attrs="{'invisible': [('sequence_number_next_prefix','=',False)]}">
-                            <label for="sequence_number_next_prefix" string="Invoice Number:"/><br/>
+                            <label for="sequence_number_next_prefix" string="发票号码:"/><br/>
                             <field name="sequence_number_next_prefix" class="oe_inline"/>
                             <field name="sequence_number_next" class="oe_inline"/>
                         </div>
@@ -69,19 +69,19 @@
                     <field name="type" invisible="1"/>
                     <group>
                         <group>
-                            <field string="Customer" name="partner_id"
+                            <field string="客户" name="partner_id"
                                 widget="res_partner_many2one"
                                 context="{'search_default_customer':1, 'show_address': 1, 'default_is_company': True, 'show_vat': True}"
                                 options='{"always_reload": True, "no_quick_create": True}'
                                 domain="[('customer', '=', True)]" required="1"/>
-                            <field name="payment_term_id"/>
-                            <field name="cash_rounding_id" groups="account.group_cash_rounding"/>
+                            <field name="payment_term_id" string="付款条款"/>
+                            <field name="cash_rounding_id" string="现金舍入方法" groups="account.group_cash_rounding"/>
                         </group>
                         <group>
-                            <field name="date_invoice" options="{'datepicker': {'warn_future': true}}"/>
-                            <field name="date_due" attrs="{'readonly': ['|',('payment_term_id','!=',False), ('state', 'in', ['open', 'in_payment', 'paid'])]}" force_save="1"/>
+                            <field name="date_invoice" string="开票日期" options="{'datepicker': {'warn_future': true}}"/>
+                            <field name="date_due" string="到期日期" attrs="{'readonly': ['|',('payment_term_id','!=',False), ('state', 'in', ['open', 'in_payment', 'paid'])]}" force_save="1"/>
                             <field name="move_name" invisible="1"/>
-                            <field name="user_id" groups="base.group_user"/>
+                            <field name="user_id" string="销售员" groups="base.group_user"/>
                             <label for="currency_id" groups="base.group_multi_currency"/>
                             <div groups="base.group_multi_currency">
                                 <field name="currency_id" options="{'no_create': True, 'no_open': True}" class="oe_inline"/>
@@ -91,7 +91,7 @@
                     </group>
                     <field name="sent" invisible="1"/>
                     <notebook colspan="4">
-                        <page string="Invoice Lines">
+                        <page string="发票行">
                             <field
                                 name="invoice_line_ids"
                                 nolabel="1"
@@ -107,30 +107,31 @@
                                     </control>
 
                                     <field name="sequence" widget="handle"/>
-                                    <field name="product_id" domain="[('sale_ok','=',True)]"/>
+                                    <field name="product_id" string="产品" domain="[('sale_ok','=',True)]"/>
                                     <field name="origin" invisible="1"/>
                                     <field name="is_rounding_line" invisible="1"/>
-                                    <field name="name" widget="section_and_note_text"/>
+                                    <field name="name" string="说明" widget="section_and_note_text"/>
                                     <field name="display_type" invisible="1"/>
                                     <field name="company_id" invisible="1"/>
                                     <field
                                         name="account_id"
+                                        string="科目"
                                         groups="account.group_account_user"
                                         domain="[('company_id', '=', parent.company_id), ('internal_type', '=', 'other'), ('deprecated', '=', False)]"
                                         attrs="{'required': [('display_type', '=', False)]}"
                                     />
-                                    <field name="account_analytic_id" groups="analytic.group_analytic_accounting"
+                                    <field name="account_analytic_id" string="分析账户" groups="analytic.group_analytic_accounting"
                                         domain="[('company_id', '=', parent.company_id)]"
                                         context="{'default_partner_id': parent.partner_id}"/>
-                                    <field name="analytic_tag_ids" groups="analytic.group_analytic_tags" widget="many2many_tags" options="{'color_field': 'color'}"/>
-                                    <field name="quantity"/>
-                                    <field name="uom_id" groups="uom.group_uom"/>
-                                    <field name="price_unit" string="Price"/>
-                                    <field name="discount" groups="base.group_no_one" string="Disc (%)"/>
-                                    <field name="invoice_line_tax_ids" widget="many2many_tags" options="{'no_create': True}" context="{'type':parent.type, 'tree_view_ref': 'account.account_tax_view_tree', 'search_view_ref': 'account.account_tax_view_search'}"
+                                    <field name="analytic_tag_ids" string="分析标签" groups="analytic.group_analytic_tags" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                    <field name="quantity" string="数量"/>
+                                    <field name="uom_id" string="计量单位" groups="uom.group_uom"/>
+                                    <field name="price_unit" string="价格"/>
+                                    <field name="discount" groups="base.group_no_one" string="折扣 (%)"/>
+                                    <field name="invoice_line_tax_ids" string="税率设置" widget="many2many_tags" options="{'no_create': True}" context="{'type':parent.type, 'tree_view_ref': 'account.account_tax_view_tree', 'search_view_ref': 'account.account_tax_view_search'}"
                                         domain="[('type_tax_use','=','sale'),('company_id', '=', parent.company_id)]"/>
-                                    <field name="price_subtotal" string="Subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
-                                    <field name="price_total" string="Total" groups="account.group_show_line_subtotals_tax_included"/>
+                                    <field name="price_subtotal" string="小计" groups="account.group_show_line_subtotals_tax_excluded"/>
+                                    <field name="price_total" string="总计" groups="account.group_show_line_subtotals_tax_included"/>
                                     <field name="currency_id" invisible="1"/>
                                 </tree>
                                 <kanban class="o_kanban_mobile">
@@ -196,9 +197,9 @@
                                 </kanban>
                             </field>
                             <group class="oe_subtotal_footer oe_right">
-                                <field name="amount_untaxed"/>
-                                <field name="amount_tax"/>
-                                <field name="amount_total" class="oe_subtotal_footer_separator"/>
+                                <field name="amount_untaxed" string="未税金额"/>
+                                <field name="amount_tax" string="税率"/>
+                                <field name="amount_total" string="总计" class="oe_subtotal_footer_separator"/>
                                 <field name="payments_widget" colspan="2" nolabel="1" widget="payment"/>
                                 <field name="residual" class="oe_subtotal_footer_separator" attrs="{'invisible': [('state', '=', 'draft')]}"/>
                                 <field name="reconciled" invisible="1"/>
@@ -206,7 +207,7 @@
                             </group>
                             <field name="comment" placeholder="Terms and conditions..."/>
                         </page>
-                        <page string="Other Info" name="other_info">
+                        <page string="其他信息" name="other_info">
                             <group>
                                 <group>
                                     <field name="journal_id" groups="account.group_account_user"
