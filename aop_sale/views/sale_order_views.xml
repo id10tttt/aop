@@ -22,12 +22,27 @@
                 </xpath>
 
 
-                <xpath expr="//button[@name='312'][1]" position="attributes">
+                <xpath expr="//button[@name='%(sale.action_view_sale_advance_payment_inv)d'][1]" position="attributes">
                     <attribute name="string">创建台账</attribute>
+                    <attribute name="name">%(aop_sale.action_view_sale_advance_payment_inv)d</attribute>
                 </xpath>
 
-                <xpath expr="//button[@name='312'][2]" position="attributes">
+                <xpath expr="//button[@name='%(sale.action_view_sale_advance_payment_inv)d']" position="attributes">
                     <attribute name="string">创建台账</attribute>
+                    <attribute name="name">%(aop_sale.action_view_sale_advance_payment_inv)d</attribute>
+                </xpath>
+
+                <xpath expr="//button[@name='%(aop_sale.action_view_sale_advance_payment_inv)d']" position="after">
+                    <button name="%(sale.action_view_sale_advance_payment_inv)d" string="创建发票" type="action" class="btn-primary" />
+
+                </xpath>
+
+                 <xpath expr="//button[@name='action_quotation_send'][3]" position="attributes">
+                     <attribute name="attrs">{'invisible': 1}</attribute>
+                </xpath>
+
+                <xpath expr="//button[@name='action_quotation_send'][4]" position="attributes">
+                    <attribute name="invisible">1</attribute>
                 </xpath>
 
                 <xpath expr="//button[@name='print_quotation']" position="after">
