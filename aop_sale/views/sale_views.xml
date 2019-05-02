@@ -13,7 +13,7 @@
         <field name="arch" type="xml">
 
             <field name="amount_total" position="attributes">
-                <attribute name="groups">aop_sale.group_aop_sale_scheduling</attribute>
+                <attribute name="groups">aop_sale.group_aop_sale_customers</attribute>
             </field>
 
         </field>
