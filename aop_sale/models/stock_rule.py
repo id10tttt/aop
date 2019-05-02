@@ -16,12 +16,12 @@ _logger = logging.getLogger(__name__)
 class ProcurementGroup(models.Model):
     _inherit = 'procurement.group'
 
-    #@api.model
-    #def _get_rule(self, product_id, location_id, values):
+    @api.model
+    def _get_rule(self, product_id, location_id, values):
 
-    #   values.update({'warehouse_id': False})
+       values.update({'warehouse_id': False})
 
-    #    return super(ProcurementGroup, self)._get_rule(product_id, location_id, values)
+       return super(ProcurementGroup, self)._get_rule(product_id, location_id, values)
 
 
 #class BundleStockRule(models.Model):
