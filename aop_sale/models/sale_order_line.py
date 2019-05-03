@@ -76,7 +76,8 @@ class SaleOrderLine(models.Model):
     #spare_part_ids = fields.One2many('product.product', 'sale_order_line_id', '备品备件')
     spare_part_ids = fields.Many2many('product.product', string='备品备件')
 
-    #route_id = fields.Many2one(compute='_compute_route_id', store=True)
+    #route_id = fields.Many2one(domain=lambda self: self._get_route_id_domain())
+
 
 
     def _compute_plan_date(self):
@@ -108,7 +109,7 @@ class SaleOrderLine(models.Model):
                 'domain': []
             }
 
-    @api.onchange('route_id')
+    #@api.onchange('route_id')
     def _onchange_route_id_by_partner(self):
 
         res = {
@@ -130,8 +131,6 @@ class SaleOrderLine(models.Model):
                 for route_line in _route_id:
                     _route_ids.append(route_line.id)
 
-
-            #route_ids = [aop_id.route_id.id for aop_id in contract.delivery_carrier_ids]
 
             res.update({
                 'domain': {

@@ -272,8 +272,9 @@
                 </xpath>
 
                 <xpath expr="//field[@name='order_line']/tree/field[@name='route_id']" position="attributes">
-
+                    <attribute name="context">{"sale_filter_route_id_by_partner": parent.partner_id}</attribute>
                     <attribute name="string">路由</attribute>
+
                     <attribute name="groups">aop_sale.group_aop_sale_customers</attribute>
                     <!--
                     <attribute name="domain">[('partner_id','=', parent.partner_id)]</attribute>
