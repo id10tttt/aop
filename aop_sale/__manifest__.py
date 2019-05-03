@@ -45,6 +45,6 @@
         'views/mass_loss_order.xml',
         'views/stock_warehouse_views.xml',
         'views/account_tax_invoice_view.xml',
-
+        'views/account_invoice.xml',
     ],
 }
