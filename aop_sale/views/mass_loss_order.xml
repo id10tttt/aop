@@ -218,6 +218,8 @@
             <field name="view_mode">tree,form</field>
         </record>
 
+        <!--
+
         <menuitem id="mass_loss_order_root"
                   name="质损单"
                   web_icon="aop_sale,static/description/mass_loss_icon.png"
@@ -230,5 +232,7 @@
                   action="action_mass_loss_type"/>
         <menuitem id="mass_loss_order_child_menu_part" parent="mass_loss_order_menu" name="质损部位"
                   action="action_mass_loss_part"/>
+       -->
+
     </data>
 </odoo>
