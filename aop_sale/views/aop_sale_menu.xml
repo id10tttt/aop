@@ -268,8 +268,8 @@
               action="action_mass_loss_part" sequence="30"/>
 
 
-    <!--  修改菜单结算->供应商->账单, 但是以下写法无效，不知道是什么原因？  -->
-
+    <!--  修改菜单结算->供应商->账单, 但是以下写法无效，仅仅只是改动了源术语，无法改动翻译值  -->
+<!--
     <record id="account.menu_action_invoice_tree2" model="ir.ui.menu">
         <field name="name">成本台账</field>
 
@@ -279,7 +279,7 @@
         <field name="name">成本台账</field>
 
     </record>
-
+-->
 
 
 </odoo>

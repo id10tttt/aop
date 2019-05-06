@@ -17,7 +17,7 @@ class SaleOrder(models.Model):
     partner_take_care_id = fields.Many2one('res.partner',
                                           string='Take Car Address',
                                           readonly=True,
-                                          required=True,
+                                          required=False,
                                           states={'draft': [('readonly', False)], 'sent': [('readonly', False)],
                                                   'sale': [('readonly', False)]},
                                           help="Take car address for current sales order.")

@@ -16,7 +16,7 @@ class StockPickingBatch(models.Model):
 
     car_no = fields.Char(string='车次号')
 
-    partner_id = fields.Many2one('res.partner', string='Vendor', required=True)
+    partner_id = fields.Many2one('res.partner', string='Vendor')
 
     picking_purchase_id = fields.Many2one('purchase.order', 'Purchase')
 
