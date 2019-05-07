@@ -27,6 +27,8 @@ class StockPicking(models.Model):
 
     product_id = fields.Many2one(string='Product', related='move_id_without_package.product_id')
 
+    vin = fields.Many2one(string='vin', related='move_id_without_package.move_line_ids.lot_id')
+
     product_uom_qty = fields.Float(
         '初始数量',
         related='move_id_without_package.product_uom_qty')
