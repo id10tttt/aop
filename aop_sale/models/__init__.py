@@ -19,3 +19,4 @@ from . import mass_loss_order
 from . import stock_warehouse
 from . import account_tax_invoice
 from . import account_invoice
+from . import stock_move_line
