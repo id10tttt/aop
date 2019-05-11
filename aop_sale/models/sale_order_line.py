@@ -20,6 +20,10 @@ class SaleOrderLine(models.Model):
         today = fields.Date.today()
         return today
 
+    number = fields.Integer(compute='get_number', store=True)
+
+
+
 
     vin = fields.Many2one('stock.production.lot', 'VIN', domain="[('product_id','=', product_id)]")
 
@@ -81,7 +85,14 @@ class SaleOrderLine(models.Model):
 
     #route_id = fields.Many2one(domain=lambda self: self._get_route_id_domain())
 
-
+    @api.multi
+    @api.depends('sequence', 'order_id')
+    def get_number(self):
+        for order in self.mapped('order_id'):
+            number = 1
+            for line in order.order_line:
+                line.number = number
+                number += 1
 
     #@api.onchange('contract_id')
     def _onchange_route_id(self):

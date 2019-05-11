@@ -12,6 +12,12 @@
 
                 </xpath>
 
+
+
+                 <xpath expr="//field[@name='order_line']/tree/field[@name='sequence']" position="after">
+                      <field name="number" string="序"/>
+                 </xpath>
+
                 <xpath expr="//field[@name='delivery_count']" position="attributes">
                     <attribute name="string">任务</attribute>
                 </xpath>
