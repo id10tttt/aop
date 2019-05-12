@@ -16,6 +16,36 @@ _logger = logging.getLogger(__name__)
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
+    @api.model
+    def default_get(self, fields):
+        res = super(SaleOrderLine, self).default_get(fields)
+
+        if self._context and self._context.get('copy_a_product') and self._context['order_id']:
+
+            order = self.env['sale.order'].browse(self._context['order_id'])
+            line = order.order_line[-1]
+
+            value = {'name': line.name,
+             'product_id': line.product_id.id,
+             'service_product_id': line.service_product_id.id,
+             'spare_part_ids': [(6, 0, line.spare_part_ids.ids)],
+             'route_id': line.route_id.id,
+             'product_uom_qty': line.product_uom_qty,
+             'price_unit': line.price_unit,
+             'price_subtotal': line.price_subtotal,
+             'tax_id': [(6, 0, line.tax_id.ids)],
+             'qty_delivered': line.qty_delivered,
+             'qty_invoiced': line.qty_invoiced,
+             'product_uom': line.product_uom.id,
+             'discount': line.discount,
+             'price_total': line.price_total,
+
+             }
+
+            res.update(value)
+
+        return  res
+
     def _default_plan_date(self):
         today = fields.Date.today()
         return today

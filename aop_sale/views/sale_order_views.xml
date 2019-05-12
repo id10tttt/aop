@@ -7,6 +7,15 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
 
+                <field name="name" position="before">
+                    <field name="id" invisible="1" />
+                </field>
+
+                 <xpath expr="//field[@name='order_line']" position="attributes">
+                    <attribute name="context">{'order_id': id}</attribute>
+
+                </xpath>
+
                 <xpath expr="//field[@name='order_line']/tree" position="attributes">
                     <attribute name="editable">bottom</attribute>
 
