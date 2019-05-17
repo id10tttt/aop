@@ -36,7 +36,6 @@
         'views/purchase_views.xml',
         'views/stock_picking_views.xml',
         'views/stock_picking.xml',
-        'views/purchase_order_views.xml',
         #'views/sale_stock_views.xml',
         'views/stock_location_route.xml',
         'views/subsidy_debit_order.xml',

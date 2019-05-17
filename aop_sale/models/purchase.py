@@ -13,11 +13,45 @@ from odoo.addons import decimal_precision as dp
 class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
+    def _default_plan_date(self):
+        today = fields.Date.today()
+        return today
+
     product_qty = fields.Float(string='Quantity', digits=dp.get_precision('Product Unit of Measure'), required=True, default=1)
 
     vin = fields.Many2one('stock.production.lot', 'VIN', domain="[('product_id','=', product_id)]")
 
     service_product_id = fields.Many2one('product.product', string='Product', domain=[('purchase_ok', '=', True)], change_default=True)
+
+    station_start_end = fields.Char(string='发站-到站')
+
+    receipt_no = fields.Char(string='交接单号')
+
+    plan_date = membership_start = fields.Date(readonly=True,
+                                               string='计划日期', default=_default_plan_date)
+
+    oems_warehouse = fields.Char(string='主机厂库房')
+
+    oems_order_no = fields.Char(string='订单号')
+
+    income_settle_partner_id = fields.Many2one('res.partner', string='收入结算单位')
+
+    manufacturer_short_name = fields.Char(string='厂商简称')
+
+    vehicle_model_type = fields.Selection([
+        ('changan', '长安轿车'),
+        ('wulin', '柳州五菱')
+
+    ], string='车型型号', default='changan')
+
+    manufacturer_common_name = fields.Char(string='俗称')
+
+    dealer_partner_id = fields.Many2one('res.partner', string='经销商名称')
+
+    spare_part_ids = fields.Many2many('product.product', string='备品备件')
+
+    route_id = fields.Many2one('stock.location.route', string='Route',
+                               ondelete='restrict')
 
     @api.onchange('product_id')
     def onchange_product_id(self):
