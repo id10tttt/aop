@@ -36,14 +36,15 @@
                     <attribute name="statusbar_visible">draft,sent,carrier,sale</attribute>
                 </xpath>
 
-
+                <!--
                 <xpath expr="//button[@name='action_quotation_send'][1]" position="before">
                     <button name="%(aop_sale.action_view_sale_advance_payment_tax_inv)d" string="创建发票" type="action" class="btn-primary" />
 
                 </xpath>
+                -->
 
                 <xpath expr="//button[@name='%(sale.action_view_sale_advance_payment_inv)d'][1]" position="attributes">
-                    <attribute name="string">创建台账</attribute>
+                    <attribute name="string">创建结算清单</attribute>
                     <attribute name="name">%(aop_sale.action_view_sale_advance_payment_inv)d</attribute>
                 </xpath>
 
@@ -63,7 +64,7 @@
                 </xpath>
 
                 <field name="invoice_count" position="attributes">
-                    <attribute name="string">收入台账</attribute>
+                    <attribute name="string">结算清单</attribute>
                 </field>
 
                 <xpath expr="//button[@name='print_quotation']" position="after">
