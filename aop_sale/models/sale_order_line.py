@@ -266,4 +266,18 @@ class SaleOrderLine(models.Model):
 
         #return result
 
+    @api.multi
+    def _prepare_invoice_line(self, qty):
+
+        res = super(SaleOrderLine, self)._prepare_invoice_line(qty)
+
+        account = self.service_product_id.property_account_income_id or self.service_product_id.categ_id.property_account_income_categ_id
+
+        res.update({
+            'product_id': self.service_product_id.id or False,
+            'account_id': account.id
+        })
+
+        return res
+
 
