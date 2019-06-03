@@ -27,6 +27,8 @@ class AccountInvoice(models.Model):
 
     account_tax_invoice_id = fields.Many2one('account.tax.invoice', 'Account tax invoice')
 
+    account_batch_no = fields.Char(string='对账批次')
+
     def create_account_tax_invoice(self):
         if self.account_tax_invoice_id:
             view = self.env.ref('aop_sale.tax_invoice_form')
