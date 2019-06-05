@@ -13,12 +13,6 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-class StockRule(models.Model):
-    _inherit = 'stock.rule'
-
-    service_product_id = fields.Many2one('product.product', string='服务产品')
-
-
 class ProcurementGroup(models.Model):
     _inherit = 'procurement.group'
 
