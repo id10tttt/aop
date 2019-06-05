@@ -32,7 +32,7 @@ class SaleOrder(models.Model):
     ], string='Status', readonly=True, copy=False, index=True, track_visibility='onchange', track_sequence=3,
         default='draft')
 
-
+    aging = fields.Float('时效(天)', default=1)
 
     @api.multi
     def action_quotation_confirm(self):

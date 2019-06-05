@@ -17,6 +17,6 @@
             name="导入订单"
             action="action_sale_oder_import_xlsx"
             parent="sale.sale_order_menu"
-            sequence="0"/>
+            sequence="1000"/>
 
 </odoo>

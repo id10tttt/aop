@@ -31,8 +31,7 @@ class ImportSaleOrderXWizard(models.TransientModel):
     def action_import(self):
         #raise UserError('订单数据项不完整!')
         #raise UserError('各项基础数据匹配失败!')
-
-        raise UserError('订单重复导入!')
+        #raise UserError('订单重复导入!')
 
 
 

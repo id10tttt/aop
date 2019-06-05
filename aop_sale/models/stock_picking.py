@@ -35,6 +35,8 @@ class StockPicking(models.Model):
 
     quantity_done = fields.Float('完成数量', related='move_id_without_package.quantity_done')
 
+    aging = fields.Float('时效(天)', related='picking_type_id.aging')
+
 
 
     def create_purchase_order(self):
