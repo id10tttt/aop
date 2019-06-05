@@ -20,15 +20,17 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['account', 'sale', 'sale_management', 'sale_stock', 'delivery', 'stock_picking_batch', 'purchase_stock', 'barcodes'],
+    'depends': ['account', 'sale', 'sale_management', 'sale_stock', 'delivery', 'stock_picking_batch', 'purchase_stock',
+                'barcodes'],
 
     # always loaded
     'data': [
         'security/aop_sale_groups.xml',
         'security/ir.model.access.csv',
-        'wizard/import_sale_order_wizard.xml',
         'wizard/sale_make_invoice_advance_views.xml',
+        'wizard/change_stock_picking.xml',
         'wizard/sale_make_tax_invoice_advance_views.xml',
+        'views/base.xml',
         'views/sale_order_views.xml',
         'views/delivery_carrier.xml',
         'views/sale_views.xml',
@@ -37,7 +39,6 @@
         'views/purchase_views.xml',
         'views/stock_picking_views.xml',
         'views/stock_picking.xml',
-        'views/stock_rule_views.xml',
         'views/res_partner_views.xml',
         'views/stock_location_route.xml',
         'views/subsidy_debit_order.xml',
@@ -47,7 +48,6 @@
         'views/stock_warehouse_views.xml',
         'views/account_tax_invoice_view.xml',
         'views/account_invoice.xml',
-        'views/actions.xml',
         'views/aop_sale_menu.xml'
     ],
 }

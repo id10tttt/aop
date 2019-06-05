@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_change_stock_picking_form" model="ir.ui.view">
+        <field name="name">更改任务</field>
+        <field name="model">change.stock.picking.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="picking_id"
+                           widget="many2many_tags"
+                           options="{'no_quick_create': True, 'no_create_edit': True}"
+                           string="任务"/>
+                </group>
+                <field name="line_ids">
+                    <tree editable="bottom">
+                        <field name="from_location" string="源位置"/>
+                        <field name="to_location" string="目的位置"/>
+                    </tree>
+                </field>
+
+                <footer>
+                    <button name="dispatch_stock_picking" string="调度任务" class="oe_highlight"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

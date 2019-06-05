@@ -64,10 +64,6 @@ class DeliveryCarrier(models.Model):
     #service_product_id = fields.Many2one(string='服务产品', related='route_id.service_product_id')
     service_product_id = fields.Many2one('product.product', string='服务产品')
 
-    start_position = fields.Char(string='起点')
-
-    end_position = fields.Char(string='终点')
-
 
 
 

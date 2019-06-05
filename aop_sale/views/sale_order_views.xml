@@ -155,10 +155,6 @@
 
                 </xpath>
 
-                <xpath expr="//field[@name='partner_shipping_id']" position="after">
-                    <field name="aging" />
-                </xpath>
-
                 <xpath expr="//field[@name='pricelist_id']" position="after">
 
                     <field name="write_uid" string="修改人" attrs="{'readonly': 1}" groups="sales_team.group_sale_manager" />
@@ -262,7 +258,8 @@
 
 
                 <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">
-                    <field name="service_product_id" string="服务产品" domain="[('type','=','service')]" attrs="{'required': 0}" />
+                    <field name="service_product_id"
+                           string="服务产品" domain="[('type','=','service')]" attrs="{'required': 0}" />
 
                     <field name="spare_part_ids" widget="many2many_tags" />
                     <field name="contract_id" invisible="1" domain="[('partner_id','=', parent.partner_id)]" groups="aop_sale.group_aop_sale_customers" />
@@ -280,7 +277,7 @@
                     <!--
                     <field name="instruction_type" groups="sales_team.group_sale_manager"/>
                     -->
-                     <field name="oems_warehouse" groups="sales_team.group_sale_manager"/>
+                     <field name="oems_warehouse" groups="sales_team.group_sale_manager,aop_sale.group_dispatch_right"/>
                      <field name="oems_order_no" groups="sales_team.group_sale_manager"/>
                      <field name="income_settle_partner_id" groups="sales_team.group_sale_manager"/>
                     <field name="manufacturer_short_name" groups="sales_team.group_sale_manager"/>
@@ -321,8 +318,6 @@
 
 
                 <xpath expr="//field[@name='order_line']/form/group/group/field[@name='product_id']" position="after">
-
-                    <!--<field name="service_product_id" domain="[('type','=','service')]" attrs="{'required': 0}" />-->
 
                     <label for="contract_id" invisible="1"/>
                     <div name='carrier_selection' invisible="1">
