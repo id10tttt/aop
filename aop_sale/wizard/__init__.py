@@ -3,4 +3,5 @@
 
 
 from . import sale_make_invoice_advance
-from . import  sale_make_tax_invoice_advance
+from . import sale_make_tax_invoice_advance
+from . import import_sale_order_wizard

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+
+    <act_window id="action_sale_oder_import_xlsx"
+        name="导入订单"
+        res_model="import.sale.order.wizard"
+        src_model="sale.order"
+        view_mode="form"
+        target="new"
+        />
+
+
+
+    <menuitem id="menu_import_sale_order"
+            name="导入订单"
+            action="action_sale_oder_import_xlsx"
+            parent="sale.sale_order_menu"
+            sequence="0"/>
+
+</odoo>
