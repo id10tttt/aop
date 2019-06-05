@@ -19,7 +19,9 @@ class RequisitionOrder(models.Model):
         _logger.info({
             'order_type_context' * 100: self._context.get('order_type_context')
         })
-        if self._context.get('order_type_context', False):
-            self.order_type = 'dispatch'
-        else:
-            self.order_type = 'customer'
+
+        for order in self:
+            if self._context.get('order_type_context', False):
+                order.order_type = 'dispatch'
+            else:
+                order.order_type = 'customer'
