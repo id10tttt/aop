@@ -99,3 +99,12 @@ class StockPicking(models.Model):
         return res
 
 
+class StockQuantPackage(models.Model):
+    _inherit = "stock.quant.package"
+
+    goods_line = fields.Char('货线')
+    loading_nums = fields.Integer('可装车数量')
+    models_loading_nums = fields.Integer('车型装车数量')
+    start_station = fields.Char('发站')
+    end_station = fields.Char('到站')
+    queue = fields.Char('队列')

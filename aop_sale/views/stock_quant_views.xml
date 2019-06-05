@@ -16,6 +16,23 @@
                     <attribute name="string">车厢类型</attribute>
                 </xpath>
 
+                <xpath expr="//field[@name='packaging_id']" position="after">
+                    <field name="goods_line" />
+                    <field name="loading_nums" />
+                    <field name="models_loading_nums" />
+                    <field name="start_station" />
+                    <field name="end_station" />
+                    <field name="queue" />
+                </xpath>
+
+                <xpath expr="//field[@name='weight']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='shipping_weight']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
             </field>
         </record>
 </odoo>
