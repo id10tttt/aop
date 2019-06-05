@@ -36,6 +36,7 @@ class StockPicking(models.Model):
     quantity_done = fields.Float('完成数量', related='move_id_without_package.quantity_done')
 
 
+    must_loading = fields.Boolean(string='是否必装车', default=False)
 
     def create_purchase_order(self):
         data = self._get_purchase_data()

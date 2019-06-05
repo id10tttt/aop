@@ -11,7 +11,7 @@
                  <xpath expr="/form/header/button[last()]" position="after">
 
                     <button name="create_purchase_order"
-                            string="创建供方任务"
+                            string="创建采购订单"
                             type="object"
                             class="oe_highlight"
                             attrs="{'invisible': [('picking_purchase_id', '!=', False)]}"
@@ -25,7 +25,7 @@
                     <field name="partner_id" string="供应商" widget="res_partner_many2one" domain="[('supplier','=',True)]" />
 
                     <field name="picking_purchase_id"
-                           string="供方任务订单"
+                           string="采购订单"
                            attrs="{'invisible': [('picking_purchase_id', '=', False)]}"
                        />
 
@@ -37,13 +37,30 @@
                     <attribute name="string">调度</attribute>
                 </xpath>
 
+                 <xpath expr="//field[@name='picking_ids']/tree/field[@name='backorder_id']" position="attributes">
+                     <attribute name="invisible">1</attribute>
+                 </xpath>
+
+                 <xpath expr="//field[@name='picking_ids']/tree/field[@name='scheduled_date']" position="attributes">
+                     <attribute name="invisible">1</attribute>
+                 </xpath>
+
+                <xpath expr="//field[@name='picking_ids']/tree/field[@name='date']" position="attributes">
+                     <attribute name="invisible">1</attribute>
+                 </xpath>
+
                  <xpath expr="//field[@name='picking_ids']/tree/field[@name='name']" position="after">
 
                     <field name="product_id"/>
+                      <field name="vin"/>
                      <field name="location_id"/>
                      <field name="location_dest_id"/>
+                     <field name="picking_type_id" string="作业"/>
+                     <field name="must_loading"/>
+                     <!--
                      <field name="product_uom_qty"/>
                      <field name="quantity_done"/>
+                     -->
 
                 </xpath>
         </field>
