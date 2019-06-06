@@ -18,15 +18,8 @@ class ChangeStockPicking(models.TransientModel):
         res = super(ChangeStockPicking, self).default_get(fields)
         ids = self._context.get('active_ids', [])
 
-        _logger.info({
-            '*' * 100: ids,
-            'context': self.env.context,
-            '_context': self.env.context.get('active_id')
-        })
         if ids:
             res['picking_id'] = [(6, 0, ids)]
-        else:
-            res['picking_id'] = 5
         return res
 
     def dispatch_stock_picking(self):

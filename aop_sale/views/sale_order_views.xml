@@ -49,7 +49,7 @@
                 </xpath>
 
                 <xpath expr="//button[@name='%(sale.action_view_sale_advance_payment_inv)d']" position="attributes">
-                    <attribute name="string">创建台账</attribute>
+                    <attribute name="string">创建结算清单</attribute>
                     <attribute name="name">%(aop_sale.action_view_sale_advance_payment_inv)d</attribute>
                 </xpath>
 

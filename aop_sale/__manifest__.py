@@ -29,6 +29,7 @@
         'security/ir.model.access.csv',
         'wizard/sale_make_invoice_advance_views.xml',
         'wizard/change_stock_picking.xml',
+        'wizard/account_tax_invoice_wizard.xml',
         'wizard/sale_make_tax_invoice_advance_views.xml',
         'views/base.xml',
         'views/sale_order_views.xml',
