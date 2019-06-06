@@ -26,6 +26,7 @@ class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
     account_tax_invoice_id = fields.Many2one('account.tax.invoice', 'Account tax invoice')
+    reconciliation_batch_no = fields.Char('Reconciliation batch no')
 
     def create_account_tax_invoice(self):
         if self.account_tax_invoice_id:
@@ -39,6 +40,19 @@ class AccountInvoice(models.Model):
                 'res_id': self.account_tax_invoice_id.id,
                 'target': 'current'
             }
+        else:
+            view_id = self.env.ref('aop_sale.view_account_tax_invoice_wizard')
+
+            return {
+                'type': 'ir.actions.act_window',
+                'view_type': 'form',
+                'view_mode': 'form',
+                'res_model': 'account.tax.invoice.wizard',
+                'views': [(view_id.id, 'form')],
+                'res_id': False,
+                'target': 'new'
+            }
+
         tax_invoice = self.env['account.tax.invoice']
         tax_account_id = self._create_account_tax_invoice(tax_invoice)
         self.write({
@@ -85,3 +99,9 @@ class AccountInvoice(models.Model):
             'invoice_line_ids': line_data
         })
         return data
+
+
+class AccountInvoiceLine(models.Model):
+    _inherit = 'account.invoice.line'
+
+    tax_invoice_amount = fields.Float('Tax invoice amount')
