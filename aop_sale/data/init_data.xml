@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="operate_type_0" model="operate.type">
+        <field name="name">公路运输</field>
+    </record>
+
+    <record id="operate_type_1" model="operate.type">
+        <field name="name">铁路运输</field>
+    </record>
+
+    <record id="operate_type_2" model="operate.type">
+        <field name="name">加固</field>
+    </record>
+
+    <record id="operate_type_3" model="operate.type">
+        <field name="name">解固</field>
+    </record>
+
+    <record id="operate_type_4" model="operate.type">
+        <field name="name">装车</field>
+    </record>
+
+    <record id="operate_type_5" model="operate.type">
+        <field name="name">卸车</field>
+    </record>
+
+     <record id="operate_type_6" model="operate.type">
+        <field name="name">接车</field>
+    </record>
+
+     <record id="operate_type_7" model="operate.type">
+        <field name="name">配送</field>
+    </record>
+
+</odoo>

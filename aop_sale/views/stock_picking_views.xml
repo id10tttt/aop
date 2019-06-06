@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
 
             <field name="sequence_id" position="after">
+                <field name="operate_type_id" />
                 <field name="product_id" domain="[('type','=','service')]" string="服务产品" />
             </field>
 

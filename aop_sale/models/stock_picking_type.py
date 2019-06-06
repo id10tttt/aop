@@ -13,3 +13,12 @@ class StockPickingType(models.Model):
 
     aging = fields.Float('时效', default=1)
 
+    operate_type_id = fields.Many2one('operate.type', string="操作类型")
+
+
+class OperateType(models.Model):
+    _name = 'operate.type'
+
+    name = fields.Char(string='操作类型', required=True)
+
+    #code = fields.Char(string='操作编码')

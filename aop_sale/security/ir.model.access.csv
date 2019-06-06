@@ -14,3 +14,4 @@ access_mass_loss_part,access_mass_loss_part,model_mass_loss_part,base.group_user
 access_account_tax_invoice,access_account_tax_invoice,model_account_tax_invoice,base.group_user,1,1,1,1
 access_account_tax_invoice_line,access_account_tax_invoice_line,model_account_tax_invoice_line,base.group_user,1,1,1,1
 access_account_tax_invoice_tax,access_account_tax_invoice_tax,model_account_tax_invoice_tax,base.group_user,1,1,1,1
+access_operate_type,access_aop_operate_type,model_operate_type,base.group_user,1,1,1,1

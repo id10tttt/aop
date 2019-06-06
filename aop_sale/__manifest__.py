@@ -27,6 +27,7 @@
     'data': [
         'security/aop_sale_groups.xml',
         'security/ir.model.access.csv',
+        'data/init_data.xml',
         'wizard/sale_make_invoice_advance_views.xml',
         'wizard/change_stock_picking.xml',
         'wizard/sale_make_tax_invoice_advance_views.xml',
@@ -48,6 +49,7 @@
         'views/stock_warehouse_views.xml',
         'views/account_tax_invoice_view.xml',
         'views/account_invoice.xml',
-        'views/aop_sale_menu.xml'
+        'views/aop_sale_menu.xml',
+
     ],
 }
