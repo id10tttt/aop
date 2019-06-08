@@ -20,6 +20,13 @@ class StockPickingBatch(models.Model):
 
     picking_purchase_id = fields.Many2one('purchase.order', 'Purchase')
 
+    dispatch_type = fields.Selection([('tlzc', u'铁路装车调度单'),
+                                      ('tlxc', u'铁路卸车调度单'),
+                                      ('gl', u'公路承运商调度单')
+                                      ],
+                                     string='调度单类型',
+                                     store=True)
+
 
     def create_purchase_order(self):
         data = self._get_purchase_data()

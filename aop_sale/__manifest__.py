@@ -46,6 +46,7 @@
         'views/subsidy_debit_order.xml',
         'views/stock_quant_views.xml',
         'views/stock_move_views.xml',
+        'views/stock_rule_views.xml',
         'views/mass_loss_order.xml',
         'views/stock_warehouse_views.xml',
         'views/account_tax_invoice_view.xml',

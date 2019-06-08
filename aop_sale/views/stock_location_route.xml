@@ -26,6 +26,13 @@
                            />
 
                 </xpath>
+
+                <xpath expr="//field[@name='rule_ids']/tree/field[@name='location_id']" position="after">
+                     <field name="service_product_id" />
+                     <field name="aging" />
+                </xpath>
+
+
             </field>
         </record>
     </data>

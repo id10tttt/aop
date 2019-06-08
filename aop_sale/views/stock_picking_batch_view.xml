@@ -20,6 +20,9 @@
                 </xpath>
 
                 <field name="user_id" position="after">
+
+                    <field name="dispatch_type"/>
+
                     <field name="car_no"/>
 
                     <field name="partner_id" string="供应商" widget="res_partner_many2one" domain="[('supplier','=',True)]" />

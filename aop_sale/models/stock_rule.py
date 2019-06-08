@@ -24,6 +24,15 @@ class ProcurementGroup(models.Model):
        return super(ProcurementGroup, self)._get_rule(product_id, location_id, values)
 
 
+class StockRule(models.Model):
+    _inherit = 'stock.rule'
+
+    service_product_id = fields.Many2one('product.product', string='服务产品')
+
+    aging = fields.Float('时效(天)', default=1)
+
+
+
 #class BundleStockRule(models.Model):
 #    _name = 'bundle.stock.rule'
 

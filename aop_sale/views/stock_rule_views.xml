@@ -9,6 +9,7 @@
             <field name="arch" type="xml">
                 <field name="procure_method" position="after">
                     <field name="service_product_id" domain="[('type','=','service')]"></field>
+                    <field name="aging"></field>
                 </field>
             </field>
         </record>
