@@ -9,85 +9,111 @@
         <field name="arch" type="xml">
 
 
+            <field name="user_id" position="after">
 
-                <field name="user_id" position="after">
+                <field name="dispatch_type"/>
 
-                    <field name="dispatch_type"/>
+                <field name="plan_number" attrs='{"invisible": [("dispatch_type", "!=", "tl")]}'/>
 
-                    <field name="plan_number"  attrs='{"invisible": [("dispatch_type", "!=", "tl")]}'/>
-
-                    <field name="car_no"  attrs='{"invisible": [("dispatch_type", "!=", "tl")]}'/>
-
+                <field name="car_no" attrs='{"invisible": [("dispatch_type", "!=", "tl")]}'/>
 
 
-                    <field name="plate_number"  attrs='{"invisible": [("dispatch_type", "!=", "gl")]}'/>
+                <field name="plate_number" attrs='{"invisible": [("dispatch_type", "!=", "gl")]}'/>
 
 
-                    <field name="partner_id" string="供应商"
-                           widget="res_partner_many2one"
-                           domain="[('supplier','=',True)]" />
+                <field name="partner_id" string="供应商"
+                       widget="res_partner_many2one"
+                       domain="[('supplier','=',True)]"/>
 
-                    <field name="picking_purchase_id"
-                           string="采购订单"
-                           attrs="{'invisible': ['|', ('picking_purchase_id', '=', False), ('dispatch_type', 'not in', 'zy')]}"
-                       />
+                <field name="picking_purchase_id"
+                       string="采购订单"
+                       attrs="{'invisible': ['|', ('picking_purchase_id', '=', False), ('dispatch_type', 'not in', 'zy')]}"
+                />
 
-                     <button name="%(product.attribute_action)d"  type="action"
-                                    string="装车计划" class="btn-link"/>
-
-
-                </field>
-
-                 <xpath expr="/form/header/button[last()]" position="after">
-
-                        <button name="create_purchase_order"
-                                string="创建采购订单"
-                                type="object"
-                                class="oe_highlight"
-                                attrs="{'invisible': ['|', ('picking_purchase_id', '!=', False), ('dispatch_type', 'not in', 'zy')]}"
-                                />
-
-                    </xpath>
+<!--                <button name="%(product.attribute_action)d" type="action"-->
+<!--                        string="装车计划" class="btn-link"/>-->
 
 
+            </field>
 
-                <xpath expr="//separator" position="attributes">
-                    <attribute name="string">调度</attribute>
-                </xpath>
+            <xpath expr="/form/header/button[last()]" position="after">
 
-                 <xpath expr="//field[@name='picking_ids']/tree/field[@name='backorder_id']" position="attributes">
-                     <attribute name="invisible">1</attribute>
-                 </xpath>
+                <button name="create_purchase_order"
+                        string="创建采购订单"
+                        type="object"
+                        class="oe_highlight"
+                        attrs="{'invisible': ['|', ('picking_purchase_id', '!=', False), ('dispatch_type', 'not in', 'zy')]}"
+                />
 
-                 <xpath expr="//field[@name='picking_ids']/tree/field[@name='scheduled_date']" position="attributes">
-                     <attribute name="invisible">1</attribute>
-                 </xpath>
+            </xpath>
 
-                <xpath expr="//field[@name='picking_ids']/tree/field[@name='date']" position="attributes">
-                     <attribute name="invisible">1</attribute>
-                 </xpath>
 
-                 <xpath expr="//field[@name='picking_ids']/tree/field[@name='name']" position="after">
+            <xpath expr="//separator" position="attributes">
+                <attribute name="string"></attribute>
+            </xpath>
 
-                    <field name="product_id"/>
-                      <field name="vin"/>
-                     <field name="location_id"/>
-                     <field name="location_dest_id"/>
-                    <field name="operate_type_name"/>
-                     <field name="must_loading" attrs='{"invisible": [("parent.dispatch_type", "not in", ["tl", "tl"])]}'/>
-                     <!--
-                     <field name="picking_type_id" string="作业"/>
-                     <field name="product_uom_qty"/>
-                     <field name="quantity_done"/>
-                     -->
+            <xpath expr="//field[@name='picking_ids']/tree/field[@name='backorder_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
 
-                </xpath>
+            <xpath expr="//field[@name='picking_ids']/tree/field[@name='scheduled_date']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
 
-                <!--
-                <xpath expr="//field[@name='picking_ids']/tree/field[@name='must_loading']" position="attributes">
-                    <attribute name="invisible">[("parent.dispatch_type", "not in", ["tlzc", "tlxc"])]</attribute>
-                </xpath>
-                -->
+            <xpath expr="//field[@name='picking_ids']/tree/field[@name='date']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+<!--            <xpath expr="//field[@name='picking_ids']/tree/field[@name='name']" position="after">-->
+
+<!--                <field name="product_id"/>-->
+<!--                <field name="vin"/>-->
+<!--                <field name="location_id"/>-->
+<!--                <field name="location_dest_id"/>-->
+<!--                <field name="operate_type_name"/>-->
+<!--                <field name="must_loading" attrs='{"invisible": [("parent.dispatch_type", "not in", ["tl", "tl"])]}'/>-->
+<!--                &lt;!&ndash;-->
+<!--                <field name="picking_type_id" string="作业"/>-->
+<!--                <field name="product_uom_qty"/>-->
+<!--                <field name="quantity_done"/>-->
+<!--                &ndash;&gt;-->
+
+<!--            </xpath>-->
+
+            <!--
+            <xpath expr="//field[@name='picking_ids']/tree/field[@name='must_loading']" position="attributes">
+                <attribute name="invisible">[("parent.dispatch_type", "not in", ["tlzc", "tlxc"])]</attribute>
+            </xpath>
+            -->
+
+            <xpath expr="//field[@name='picking_ids']" position="replace">
+                <notebook>
+                    <page string="调度">
+                        <field name="picking_ids">
+                            <tree editable="bottom">
+                                <field name="name"/>
+                                <field name="product_id"/>
+                                <field name="vin"/>
+                                <field name="location_id"/>
+                                <field name="location_dest_id"/>
+                                <field name="operate_type_name"/>
+                                <field name="must_loading"
+                                       attrs='{"invisible": [("parent.dispatch_type", "not in", ["tl", "tl"])]}'/>
+                                <field name="origin"/>
+                                <field name="state"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="装车计划">
+                        <field name="mount_car_plan_ids">
+                            <tree editable="bottom">
+                                <field name="name" string="车型"/>
+                                <field name="layer_option" string="上层/下层"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </xpath>
         </field>
     </record>
 

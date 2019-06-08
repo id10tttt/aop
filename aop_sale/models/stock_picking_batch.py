@@ -1,14 +1,9 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, timedelta
 from odoo import api, fields, models, _
-from odoo.addons import decimal_precision as dp
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT, float_compare
-from odoo.exceptions import UserError
-import traceback
 import logging
 
 _logger = logging.getLogger(__name__)
-
 
 
 class StockPickingBatch(models.Model):
@@ -89,8 +84,9 @@ class MountCarPlan(models.Model):
 
     name = fields.Char(string='车型')
 
-    on_layer = fields.Boolean(string='上层', default=False)
-
-    under_layer = fields.Boolean(string='下层', default=False)
+    layer_option = fields.Selection([
+        ('on_layer', u'上层'),
+        ('under_layer', u'下层')
+    ], string=u'上下层')
 
     stock_picking_batch_id = fields.Many2one('stock.picking.batch', '批量调度单')
