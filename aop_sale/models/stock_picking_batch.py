@@ -14,7 +14,11 @@ _logger = logging.getLogger(__name__)
 class StockPickingBatch(models.Model):
     _inherit = "stock.picking.batch"
 
-    car_no = fields.Char(string='装车编号')
+    #car_no = fields.Char(string='装车编号')
+
+    #car_no_ids = fields.One2many('stock.quant.package', 'stock_picking_batch_id', string='装车编号')
+
+    car_no_ids = fields.Many2many('stock.quant.package', string='装车编号')
 
     partner_id = fields.Many2one('res.partner', string='Vendor')
 

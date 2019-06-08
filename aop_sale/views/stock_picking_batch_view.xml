@@ -16,8 +16,19 @@
 
                     <field name="plan_number"  attrs='{"invisible": [("dispatch_type", "!=", "tl")]}'/>
 
-                    <field name="car_no"  attrs='{"invisible": [("dispatch_type", "!=", "tl")]}'/>
+                    <!--
+                    <field name="car_no_ids"  attrs='{"invisible": [("dispatch_type", "!=", "tl")]}'>
 
+                        <tree create="1" edit="1" >
+                                    <field name="name" string="车厢号" />
+
+                                </tree>
+
+                    </field>
+                    -->
+
+
+                    <field name="car_no_ids"  widget="many2many_tags" attrs='{"invisible": [("dispatch_type", "!=", "tl")]}'/>
 
 
                     <field name="plate_number"  attrs='{"invisible": [("dispatch_type", "!=", "gl")]}'/>
