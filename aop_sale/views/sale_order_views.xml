@@ -269,6 +269,7 @@
                     <field name="aging" string="时效(天)" attrs="{'readonly':1}" />
                     -->
                     <field name="vin"/>
+                    <field name="degree"/>
                 </xpath>
 
                 <xpath expr="//field[@name='order_line']/tree/field[@name='route_id']" position="before">

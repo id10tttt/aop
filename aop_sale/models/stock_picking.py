@@ -38,6 +38,13 @@ class StockPicking(models.Model):
 
     must_loading = fields.Boolean(string='是否必装车', default=False)
 
+    degree = fields.Selection([('L', u'低'),
+                               ('M', u'中'),
+                               ('H', u'高')
+                               ],
+                              string='紧急度',
+                              store=True)
+
     def create_purchase_order(self):
         data = self._get_purchase_data()
         _logger.info({

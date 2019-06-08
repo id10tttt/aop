@@ -85,6 +85,13 @@ class SaleOrderLine(models.Model):
     plan_date  = membership_start = fields.Date(readonly=True,
         string ='计划日期',  default=_default_plan_date)
 
+    degree = fields.Selection([('L', u'低'),
+                               ('M', u'中'),
+                               ('H', u'高')
+                               ],
+                              string='紧急度',
+                              store=True)
+
     #就是服务产品
     #instruction_type = fields.Selection([
     #    ('global', '全局指令'),
