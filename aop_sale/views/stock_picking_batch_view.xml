@@ -8,7 +8,6 @@
         <field name="inherit_id" ref="stock_picking_batch.stock_picking_batch_form"/>
         <field name="arch" type="xml">
 
-
             <field name="user_id" position="after">
 
                 <field name="dispatch_type"/>

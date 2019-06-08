@@ -116,3 +116,5 @@ class StockQuantPackage(models.Model):
     start_station = fields.Char('发站')
     end_station = fields.Char('到站')
     queue = fields.Char('队列')
+
+    stock_picking_batch_id = fields.Many2one('stock.picking.batch', '批量调度单')
