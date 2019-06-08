@@ -8,33 +8,42 @@
         <field name="inherit_id" ref="stock_picking_batch.stock_picking_batch_form"/>
         <field name="arch" type="xml">
 
-                 <xpath expr="/form/header/button[last()]" position="after">
 
-                    <button name="create_purchase_order"
-                            string="创建采购订单"
-                            type="object"
-                            class="oe_highlight"
-                            attrs="{'invisible': [('picking_purchase_id', '!=', False)]}"
-                            />
-
-                </xpath>
 
                 <field name="user_id" position="after">
 
                     <field name="dispatch_type"/>
 
-                    <field name="plan_number"  attrs='{"invisible": [("dispatch_type", "not in", ["tlzc", "tlxc"])]}'/>
+                    <field name="plan_number"  attrs='{"invisible": [("dispatch_type", "!=", "tl")]}'/>
 
-                    <field name="car_no"  attrs='{"invisible": [("dispatch_type", "not in", ["tlzc", "tlxc"])]}'/>
+                    <field name="car_no"  attrs='{"invisible": [("dispatch_type", "!=", "tl")]}'/>
 
-                    <field name="partner_id" string="供应商" widget="res_partner_many2one" domain="[('supplier','=',True)]" />
+
+
+                    <field name="plate_number"  attrs='{"invisible": [("dispatch_type", "!=", "gl")]}'/>
+
+                    <field name="partner_id" string="供应商"
+                           widget="res_partner_many2one"
+                           attrs='{"invisible": [("dispatch_type", "not in", "zy")]}'
+                           domain="[('supplier','=',True)]" />
 
                     <field name="picking_purchase_id"
                            string="采购订单"
-                           attrs="{'invisible': [('picking_purchase_id', '=', False)]}"
+                           attrs="{'invisible': ['|', ('picking_purchase_id', '=', False), ('dispatch_type', 'not in', 'zy')]}"
                        />
 
                 </field>
+
+                 <xpath expr="/form/header/button[last()]" position="after">
+
+                        <button name="create_purchase_order"
+                                string="创建采购订单"
+                                type="object"
+                                class="oe_highlight"
+                                attrs="{'invisible': ['|', ('picking_purchase_id', '!=', False), ('dispatch_type', 'not in', 'zy')]}"
+                                />
+
+                    </xpath>
 
 
 
@@ -61,7 +70,7 @@
                      <field name="location_id"/>
                      <field name="location_dest_id"/>
                     <field name="operate_type_name"/>
-                     <field name="must_loading" attrs='{"invisible": [("parent.dispatch_type", "not in", ["tlzc", "tlxc"])]}'/>
+                     <field name="must_loading" attrs='{"invisible": [("parent.dispatch_type", "not in", ["tl", "tl"])]}'/>
                      <!--
                      <field name="picking_type_id" string="作业"/>
                      <field name="product_uom_qty"/>

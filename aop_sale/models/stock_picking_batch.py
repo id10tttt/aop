@@ -14,22 +14,24 @@ _logger = logging.getLogger(__name__)
 class StockPickingBatch(models.Model):
     _inherit = "stock.picking.batch"
 
-    car_no = fields.Char(string='车次号')
+    car_no = fields.Char(string='装车编号')
 
     partner_id = fields.Many2one('res.partner', string='Vendor')
 
     picking_purchase_id = fields.Many2one('purchase.order', 'Purchase')
 
-    dispatch_type = fields.Selection([('tlzc', u'铁路装车调度单'),
-                                      ('tlxc', u'铁路卸车调度单'),
-                                      ('gl', u'公路承运商调度单')
+    dispatch_type = fields.Selection([('zy', u'中央调度'),
+                                      ('tl', u'铁路调度'),
+                                      ('gl', u'公路调度')
                                       ],
-                                     string='调度单类型',
+                                     string='调度类型',
                                      store=True)
 
-    plan_number = fields.Integer(string='计划装车数量', default=1)
+    plan_number = fields.Integer(string='计划数量', default=1)
 
+    plate_number = fields.Char(string='车牌号')
 
+    #mount_car_plan = fields.Char(string='装车计划')
 
     def create_purchase_order(self):
         data = self._get_purchase_data()
