@@ -31,7 +31,7 @@ class StockPickingBatch(models.Model):
 
     plate_number = fields.Char(string='车牌号')
 
-    #mount_car_plan = fields.Char(string='装车计划')
+    mount_car_plan_ids = fields.One2many('mount.car.plan', 'stock_picking_batch_id', string='装车计划')
 
     def create_purchase_order(self):
         data = self._get_purchase_data()
@@ -82,3 +82,15 @@ class StockPickingBatch(models.Model):
 
 
         return res
+
+
+class MountCarPlan(models.Model):
+    _name = "mount.car.plan"
+
+    name = fields.Char(string='车型')
+
+    on_layer = fields.Boolean(string='上层', default=False)
+
+    under_layer = fields.Boolean(string='下层', default=False)
+
+    stock_picking_batch_id = fields.Many2one('stock.picking.batch', '批量调度单')

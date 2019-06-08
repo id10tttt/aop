@@ -22,15 +22,19 @@
 
                     <field name="plate_number"  attrs='{"invisible": [("dispatch_type", "!=", "gl")]}'/>
 
+
                     <field name="partner_id" string="供应商"
                            widget="res_partner_many2one"
-                           attrs='{"invisible": [("dispatch_type", "not in", "zy")]}'
                            domain="[('supplier','=',True)]" />
 
                     <field name="picking_purchase_id"
                            string="采购订单"
                            attrs="{'invisible': ['|', ('picking_purchase_id', '=', False), ('dispatch_type', 'not in', 'zy')]}"
                        />
+
+                     <button name="%(product.attribute_action)d"  type="action"
+                                    string="装车计划" class="btn-link"/>
+
 
                 </field>
 
