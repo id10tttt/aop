@@ -15,7 +15,7 @@ class StockPickingType(models.Model):
 
     operate_type_id = fields.Many2one('operate.type', string="操作类型")
 
-    #operate_type_name = fields.Char('作业内容', related='operate_type_id.name')
+    operate_type_name = fields.Char('作业内容', related='operate_type_id.name')
 
 
 class OperateType(models.Model):

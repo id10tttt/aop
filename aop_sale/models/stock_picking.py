@@ -45,6 +45,8 @@ class StockPicking(models.Model):
                               string='紧急度',
                               store=True)
 
+    operate_type_name = fields.Char('作业内容', related='picking_type_id.operate_type_name')
+
     def create_purchase_order(self):
         data = self._get_purchase_data()
         _logger.info({

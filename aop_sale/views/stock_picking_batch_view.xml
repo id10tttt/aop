@@ -23,6 +23,8 @@
 
                     <field name="dispatch_type"/>
 
+                    <field name="plan_number"  attrs='{"invisible": [("dispatch_type", "not in", ["tlzc", "tlxc"])]}'/>
+
                     <field name="car_no"  attrs='{"invisible": [("dispatch_type", "not in", ["tlzc", "tlxc"])]}'/>
 
                     <field name="partner_id" string="供应商" widget="res_partner_many2one" domain="[('supplier','=',True)]" />
@@ -58,8 +60,8 @@
                       <field name="vin"/>
                      <field name="location_id"/>
                      <field name="location_dest_id"/>
-
-                     <field name="must_loading"/>
+                    <field name="operate_type_name"/>
+                     <field name="must_loading" attrs='{"invisible": [("parent.dispatch_type", "not in", ["tlzc", "tlxc"])]}'/>
                      <!--
                      <field name="picking_type_id" string="作业"/>
                      <field name="product_uom_qty"/>
@@ -67,6 +69,12 @@
                      -->
 
                 </xpath>
+
+                <!--
+                <xpath expr="//field[@name='picking_ids']/tree/field[@name='must_loading']" position="attributes">
+                    <attribute name="invisible">[("parent.dispatch_type", "not in", ["tlzc", "tlxc"])]</attribute>
+                </xpath>
+                -->
         </field>
     </record>
 

@@ -27,6 +27,9 @@ class StockPickingBatch(models.Model):
                                      string='调度单类型',
                                      store=True)
 
+    plan_number = fields.Integer(string='计划装车数量', default=1)
+
+
 
     def create_purchase_order(self):
         data = self._get_purchase_data()
