@@ -14,7 +14,7 @@
 
                 <field name="plan_number" attrs='{"invisible": [("dispatch_type", "!=", "tl")]}'/>
 
-                <field name="car_no" attrs='{"invisible": [("dispatch_type", "!=", "tl")]}'/>
+<!--                <field name="car_no" attrs='{"invisible": [("dispatch_type", "!=", "tl")]}'/>-->
 
 
                 <field name="plate_number" attrs='{"invisible": [("dispatch_type", "!=", "gl")]}'/>

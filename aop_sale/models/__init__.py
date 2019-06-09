@@ -21,4 +21,5 @@ from . import account_tax_invoice
 from . import account_invoice
 from . import stock_move_line
 from . import requisition_order
+from . import insurance_management
 

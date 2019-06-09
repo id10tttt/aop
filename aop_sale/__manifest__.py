@@ -33,6 +33,7 @@
         'wizard/account_tax_invoice_wizard.xml',
         'wizard/sale_make_tax_invoice_advance_views.xml',
         'views/base.xml',
+        'views/insurance_management.xml',
         'views/sale_order_views.xml',
         'views/delivery_carrier.xml',
         'views/sale_views.xml',
@@ -51,7 +52,7 @@
         'views/stock_warehouse_views.xml',
         'views/account_tax_invoice_view.xml',
         'views/account_invoice.xml',
-        'views/aop_sale_menu.xml',
+        'views/aop_sale_menu.xml'
 
     ],
 }

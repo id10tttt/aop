@@ -244,9 +244,18 @@
     <menuitem id="insurance_manager_sub_menu"
               parent="insurance_manager_menu"
               name="保险管理"
-              action="website.action_website"
+              action="action_insurance_management"
               sequence="10"
     />
+
+    <!-- 物流网络->保险管理->保险管理, 二级菜单 -->
+    <menuitem id="insurance_manager_sub_menu_type"
+              parent="insurance_manager_menu"
+              name="保险类型"
+              action="action_insurance_management_type"
+              sequence="10"
+    />
+
 
     <!-- 物流网络->质损管理, 一级菜单 -->
     <menuitem id="mass_loss_manager_menu"
@@ -267,6 +276,9 @@
     <menuitem id="mass_loss_order_child_menu_part" parent="mass_loss_manager_menu" name="质损部位"
               action="action_mass_loss_part" sequence="30"/>
 
+    <!-- 物流网络->质损管理->质损附件信息, 二级菜单 -->
+    <menuitem id="mass_loss_order_child_menu_attachment" parent="mass_loss_manager_menu" name="质损附件信息"
+              action="action_mass_loss_attachment" sequence="40"/>
 
     <!--  修改菜单结算->供应商->账单, 但是以下写法无效，仅仅只是改动了源术语，无法改动翻译值  -->
 <!--
