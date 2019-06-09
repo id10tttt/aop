@@ -48,7 +48,7 @@
                 <field name="move_id_without_package" string=""/>
                 <field name="aging"/>
                 <field name="degree"/>
-                <field name="need_insurance" />
+
                 <field name="mass_attachment_ids" string="质损附件信息" widget="many2many_tags"
                        options="{'no_create_edit': True, 'no_quick_create': True}"/>
                 <field name="mass_order_id" string="质损单" attrs="{'invisible': [('mass_order_id', '=', False)]}"
@@ -61,9 +61,14 @@
                 <field name="src_partner_id" string="源地址"/>
                 <field name="des_partner_id" string="目的地址"/>
 
+                <field name="insurance_partner_id" />
+                <field name="need_insurance" />
+
+                <!--
                 <field name="picking_purchase_id"
                        string="供方任务订单"
                        attrs="{'invisible': [('picking_purchase_id', '=', False)]}"/>
+                       -->
             </xpath>
 
             <xpath expr="//button[@name='action_see_packages']" position="attributes">
