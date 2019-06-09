@@ -51,6 +51,8 @@ class StockPicking(models.Model):
     mass_order_id = fields.Many2one('mass.loss.order', 'Mass Loss Order')
     mass_attachment_ids = fields.Many2many('mass.loss.attachment.template', string='Mass Attachment')
 
+    need_insurance = fields.Boolean(string='需要投保', default=False)
+
     def create_purchase_order(self):
         data = self._get_purchase_data()
         _logger.info({
