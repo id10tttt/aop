@@ -155,6 +155,10 @@
 
                 </xpath>
 
+                <xpath expr="//field[@name='partner_shipping_id']" position="after">
+                    <field name="aging" />
+                </xpath>
+
                 <xpath expr="//field[@name='pricelist_id']" position="after">
 
                     <field name="write_uid" string="修改人" attrs="{'readonly': 1}" groups="sales_team.group_sale_manager" />

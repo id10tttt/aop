@@ -46,6 +46,7 @@
                                 <field name="serial_no"/>
                                 <field name="is_formal"/>
                                 <field name="project_id"/>
+                                <field name="aging"/>
 
                             </group>
                             <group>
@@ -67,6 +68,8 @@
                                      <field name="name" string="条款名称"/>
                                      <field name="product_id" string="货物"/>
                                      <field name="service_product_id" string="服务产品" />
+                                     <field name="start_position"/>
+                                     <field name="end_position"/>
 
                                 </tree>
 

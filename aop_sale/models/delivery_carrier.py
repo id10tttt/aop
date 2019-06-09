@@ -40,8 +40,7 @@ class AopContract(models.Model):
 
     delivery_carrier_ids = fields.One2many('delivery.carrier', 'contract_id', string="合同条款")
 
-
-
+    aging = fields.Float('时效(天)', default=1)
 
 
 
@@ -65,7 +64,9 @@ class DeliveryCarrier(models.Model):
     service_product_id = fields.Many2one('product.product', string='服务产品')
 
 
+    start_position = fields.Char('起点')
 
+    end_position = fields.Char('终点')
 
 
 
