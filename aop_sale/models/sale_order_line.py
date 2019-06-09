@@ -8,8 +8,6 @@ from odoo.exceptions import UserError
 import traceback
 import logging
 
-
-
 _logger = logging.getLogger(__name__)
 
 
@@ -26,26 +24,26 @@ class SaleOrderLine(models.Model):
             if order.order_line:
                 line = order.order_line[-1]
 
-                value = {'name': line.name,
-                 'product_id': line.product_id.id,
-                 'service_product_id': line.service_product_id.id,
-                 'spare_part_ids': [(6, 0, line.spare_part_ids.ids)],
-                 'route_id': line.route_id.id,
-                 'product_uom_qty': line.product_uom_qty,
-                 'price_unit': line.price_unit,
-                 'price_subtotal': line.price_subtotal,
-                 'tax_id': [(6, 0, line.tax_id.ids)],
-                 'qty_delivered': line.qty_delivered,
-                 'qty_invoiced': line.qty_invoiced,
-                 'product_uom': line.product_uom.id,
-                 'discount': line.discount,
-                 'price_total': line.price_total,
-
-                 }
+                value = {
+                    'name': line.name,
+                    'product_id': line.product_id.id,
+                    'service_product_id': line.service_product_id.id,
+                    'spare_part_ids': [(6, 0, line.spare_part_ids.ids)],
+                    'route_id': line.route_id.id,
+                    'product_uom_qty': line.product_uom_qty,
+                    'price_unit': line.price_unit,
+                    'price_subtotal': line.price_subtotal,
+                    'tax_id': [(6, 0, line.tax_id.ids)],
+                    'qty_delivered': line.qty_delivered,
+                    'qty_invoiced': line.qty_invoiced,
+                    'product_uom': line.product_uom.id,
+                    'discount': line.discount,
+                    'price_total': line.price_total,
+                }
 
                 res.update(value)
 
-        return  res
+        return res
 
     def _default_plan_date(self):
         today = fields.Date.today()
@@ -53,14 +51,11 @@ class SaleOrderLine(models.Model):
 
     number = fields.Integer(compute='get_number', store=True)
 
-
-
-
     vin = fields.Many2one('stock.production.lot', 'VIN', domain="[('product_id','=', product_id)]")
 
     service_product_id = fields.Many2one('product.product',
                                          string='Product',
-                                         #related='route_id.service_product_id',
+                                         # related='route_id.service_product_id',
                                          domain=[('sale_ok', '=', True)],
                                          ondelete='restrict')
 
@@ -68,22 +63,20 @@ class SaleOrderLine(models.Model):
 
     contract_id = fields.Many2one('aop.contract', string='合同')
 
-
-
-    #carrier_price = fields.Float(string='合同费用', related='carrier_id.fixed_price', store=True, default=0, digits=dp.get_precision('Product Price'))
+    # carrier_price = fields.Float(string='合同费用', related='carrier_id.fixed_price', store=True, default=0, digits=dp.get_precision('Product Price'))
 
     carrier_price = fields.Float(string='合同费用', default=0)
 
-    #carrier_price = fields.Monetary(string='合同费用', store=True, readonly=True, compute='_carrier_price')
+    # carrier_price = fields.Monetary(string='合同费用', store=True, readonly=True, compute='_carrier_price')
 
-    #aging = fields.Float('时效', related='carrier_id.aging', store=True,  default=1)
+    # aging = fields.Float('时效', related='carrier_id.aging', store=True,  default=1)
 
     station_start_end = fields.Char(string='发站-到站')
 
     receipt_no = fields.Char(string='交接单号')
 
-    plan_date  = membership_start = fields.Date(readonly=True,
-        string ='计划日期',  default=_default_plan_date)
+    plan_date = membership_start = fields.Date(readonly=True,
+                                               string='计划日期', default=_default_plan_date)
 
     degree = fields.Selection([('L', u'低'),
                                ('M', u'中'),
@@ -92,8 +85,8 @@ class SaleOrderLine(models.Model):
                               string='紧急度',
                               store=True)
 
-    #就是服务产品
-    #instruction_type = fields.Selection([
+    # 就是服务产品
+    # instruction_type = fields.Selection([
     #    ('global', '全局指令'),
     #    ('otd', 'OTD指令'),
     #    ('composite', '复合指令'),
@@ -113,7 +106,7 @@ class SaleOrderLine(models.Model):
         ('changan', '长安轿车'),
         ('wulin', '柳州五菱')
 
-        ], string='车型型号', default='changan')
+    ], string='车型型号', default='changan')
 
     manufacturer_common_name = fields.Char(string='俗称')
 
@@ -121,7 +114,7 @@ class SaleOrderLine(models.Model):
 
     spare_part_ids = fields.Many2many('product.product', string='备品备件')
 
-    #route_id = fields.Many2one(domain=lambda self: self._get_route_id_domain())
+    # route_id = fields.Many2one(domain=lambda self: self._get_route_id_domain())
 
     @api.multi
     @api.depends('sequence', 'order_id')
@@ -132,15 +125,15 @@ class SaleOrderLine(models.Model):
                 line.number = number
                 number += 1
 
-    #@api.onchange('contract_id')
+    # @api.onchange('contract_id')
     def _onchange_route_id(self):
 
         _logger.info({
             'contract_id': self.contract_id
         })
-        #self.carrier_price = self.contract_id.fixed_price
+        # self.carrier_price = self.contract_id.fixed_price
 
-        route_ids = [aop_id.route_id.id for aop_id in self.contract_id.delivery_carrier_ids ]
+        route_ids = [aop_id.route_id.id for aop_id in self.contract_id.delivery_carrier_ids]
 
         if self.order_id.partner_id and self.contract_id:
             return {
@@ -154,7 +147,7 @@ class SaleOrderLine(models.Model):
                 'domain': []
             }
 
-    #@api.onchange('route_id')
+    # @api.onchange('route_id')
     def _onchange_route_id_by_partner(self):
 
         res = {
@@ -176,7 +169,6 @@ class SaleOrderLine(models.Model):
                 for route_line in _route_id:
                     _route_ids.append(route_line.id)
 
-
             res.update({
                 'domain': {
                     'route_id': [('id', 'in', _route_ids)]
@@ -186,10 +178,8 @@ class SaleOrderLine(models.Model):
 
         return res
 
-
-    #@api.onchange('route_id')
+    # @api.onchange('route_id')
     def _onchange_carrier_price(self):
-
 
         if self.route_id:
 
@@ -199,9 +189,6 @@ class SaleOrderLine(models.Model):
 
             if carrier:
                 self.carrier_price = carrier.fixed_price
-
-
-
 
     @api.multi
     @api.onchange('product_id')
@@ -214,7 +201,7 @@ class SaleOrderLine(models.Model):
 
         return result
 
-    #@api.onchange('product_uom_qty', 'product_uom', 'route_id')
+    # @api.onchange('product_uom_qty', 'product_uom', 'route_id')
     def _onchange_product_id_check_availability(self):
         pass
 
@@ -243,7 +230,7 @@ class SaleOrderLine(models.Model):
                 'price_subtotal': taxes['total_excluded'] + line.carrier_price,
             })
 
-    #@api.onchange('product_uom', 'product_uom_qty')
+    # @api.onchange('product_uom', 'product_uom_qty')
     def product_uom_change(self):
         pass
 
@@ -251,8 +238,7 @@ class SaleOrderLine(models.Model):
     @api.onchange('service_product_id')
     def service_product_id_change(self):
 
-        #result = super(SaleOrderLine, self).product_id_change()
-
+        # result = super(SaleOrderLine, self).product_id_change()
 
         if not self.service_product_id:
             return
@@ -261,8 +247,6 @@ class SaleOrderLine(models.Model):
 
         vals = {}
 
-
-
         self._compute_tax_id()
 
         if self.order_id.pricelist_id and self.order_id.partner_id:
@@ -270,7 +254,4 @@ class SaleOrderLine(models.Model):
                 self._get_display_price(product), product.taxes_id, self.tax_id, self.company_id)
         self.update(vals)
 
-
-        #return result
-
-
+        # return result

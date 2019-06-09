@@ -9,6 +9,7 @@ access_aop_contract,access_aop_contract,model_aop_contract,base.group_user,1,1,1
 access_contract_version,access_contract_version,model_contract_version,base.group_user,1,1,1,1
 access_contract_project,access_contract_project,model_contract_project,base.group_user,1,1,1,1
 access_mass_loss_order,access_mass_loss_order,model_mass_loss_order,base.group_user,1,1,1,1
+access_mass_loss_attachment_template,access_mass_loss_attachment_template,model_mass_loss_attachment_template,base.group_user,1,1,1,1
 access_mass_loss_type,access_mass_loss_type,model_mass_loss_type,base.group_user,1,1,1,1
 access_mass_loss_part,access_mass_loss_part,model_mass_loss_part,base.group_user,1,1,1,1
 access_account_tax_invoice,access_account_tax_invoice,model_account_tax_invoice,base.group_user,1,1,1,1
@@ -16,3 +17,5 @@ access_account_tax_invoice_line,access_account_tax_invoice_line,model_account_ta
 access_account_tax_invoice_tax,access_account_tax_invoice_tax,model_account_tax_invoice_tax,base.group_user,1,1,1,1
 access_operate_type,access_aop_operate_type,model_operate_type,base.group_user,1,1,1,1
 access_mount_car_plan,access_mount_car_plan,model_mount_car_plan,base.group_user,1,1,1,1
+access_insurance_management,access_insurance_management,model_insurance_management,base.group_user,1,1,1,1
+access_insurance_management_type,access_insurance_management_type,model_insurance_management_type,base.group_user,1,1,1,1

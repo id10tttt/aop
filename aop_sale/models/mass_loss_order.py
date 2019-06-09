@@ -2,9 +2,12 @@
 
 from odoo import models, fields, api
 
+FIELD_LIST = ['picking_id', 'mass_attachment_ids']
+
 
 class MassLossOrder(models.Model):
     _name = 'mass.loss.order'
+    _inherit = ['mail.thread']
     _description = 'Mass Loss Order'
 
     name = fields.Char('Mass Loss Name')
@@ -46,9 +49,20 @@ class MassLossOrder(models.Model):
     buyout_deductions_diff = fields.Float('Buyout deductions')
     case_number = fields.Char('Case Number')
 
+    picking_id = fields.Many2one('stock.picking', 'Picking')
+    mass_attachment_ids = fields.Many2many('mass.loss.attachment.template', string='Mass Attachment')
+
     @api.multi
     def action_return_to_factory(self):
         pass
+    
+    @api.model
+    def default_get(self, filed_list):
+        res = super(MassLossOrder, self).default_get(filed_list)
+        for filed_name in FIELD_LIST:
+            if self.env.context.get(filed_name, False):
+                res[filed_name] = self.env.context.get(filed_name)
+        return res
 
 
 class MassLossType(models.Model):
@@ -67,3 +81,10 @@ class MassLossPart(models.Model):
     ]
 
     name = fields.Char('Mass Loss Part')
+
+
+class MassLossAttachment(models.Model):
+    _name = 'mass.loss.attachment.template'
+
+    name = fields.Char('Name')
+    files = fields.Many2many('ir.attachment')

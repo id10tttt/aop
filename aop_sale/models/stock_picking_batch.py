@@ -78,8 +78,6 @@ class StockPickingBatch(models.Model):
                 if not data['product_id'] in product_ids:
                     product_ids.append(data['product_id'])
                     res.append((0, 0, data))
-
-
         return res
 
 

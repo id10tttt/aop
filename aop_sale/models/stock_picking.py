@@ -13,6 +13,7 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
+
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
 
@@ -22,8 +23,8 @@ class StockPicking(models.Model):
     picking_purchase_id = fields.Many2one('purchase.order', 'Purchase')
 
     move_id_without_package = fields.Many2one('stock.move', string="库存移动",
-                                               domain=['|', ('package_level_id', '=', False),
-                                                       ('picking_type_entire_packs', '=', False)])
+                                              domain=['|', ('package_level_id', '=', False),
+                                                      ('picking_type_entire_packs', '=', False)])
 
     product_id = fields.Many2one(string='Product', related='move_id_without_package.product_id')
 
@@ -35,7 +36,6 @@ class StockPicking(models.Model):
 
     quantity_done = fields.Float('完成数量', related='move_id_without_package.quantity_done')
 
-
     must_loading = fields.Boolean(string='是否必装车', default=False)
 
     degree = fields.Selection([('L', u'低'),
@@ -46,6 +46,8 @@ class StockPicking(models.Model):
                               store=True)
 
     operate_type_name = fields.Char('作业内容', related='picking_type_id.operate_type_name')
+    mass_order_id = fields.Many2one('mass.loss.order', 'Mass Loss Order')
+    mass_attachment_ids = fields.Many2many('mass.loss.attachment.template', string='Mass Attachment')
 
     def create_purchase_order(self):
         data = self._get_purchase_data()
@@ -105,6 +107,20 @@ class StockPicking(models.Model):
                 'product_uom': line_id.product_id.uom_id.id
             }))
         return res
+
+    def create_mass_loss_order(self):
+        view_id = self.env.ref('aop_sale.mass_loss_order_form')
+
+        return {
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'mass.loss.order',
+            'views': [(view_id.id, 'form')],
+            'res_id': False,
+            'context': {'picking_id': self.id, 'mass_attachment_ids': [(6, 0, self.mass_attachment_ids.ids)]},
+            'target': 'new'
+        }
 
 
 class StockQuantPackage(models.Model):

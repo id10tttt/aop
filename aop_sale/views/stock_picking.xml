@@ -13,15 +13,15 @@
             </xpath>
 
             <xpath expr="//field[@name='partner_id']" position="attributes">
-                 <attribute name="invisible">1</attribute>
+                <attribute name="invisible">1</attribute>
             </xpath>
 
             <xpath expr="//field[@name='scheduled_date']" position="attributes">
-                 <attribute name="invisible">1</attribute>
+                <attribute name="invisible">1</attribute>
             </xpath>
 
-             <xpath expr="//field[@name='backorder_id']" position="attributes">
-                 <attribute name="invisible">1</attribute>
+            <xpath expr="//field[@name='backorder_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
             </xpath>
 
 
@@ -36,20 +36,22 @@
             <xpath expr="/form/header/button[last()]" position="after">
 
                 <!--<button name="create_purchase_order"-->
-                        <!--string="Create Purchase Order"-->
-                        <!--type="object"-->
-                        <!--class="oe_highlight"-->
-                        <!--attrs="{'invisible': [('picking_purchase_id', '!=', False)]}"-->
-                        <!--/>-->
+                <!--string="Create Purchase Order"-->
+                <!--type="object"-->
+                <!--class="oe_highlight"-->
+                <!--attrs="{'invisible': [('picking_purchase_id', '!=', False)]}"-->
+                <!--/>-->
 
             </xpath>
 
             <xpath expr="//field[@name='picking_type_id']" position="after">
-                <field name="move_id_without_package" string="" />
-                <field name="degree" />
-
+                <field name="move_id_without_package" string=""/>
+                <field name="degree"/>
+                <field name="mass_attachment_ids" string="质损附件信息" widget="many2many_tags"
+                       options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                <field name="mass_order_id" string="质损单" attrs="{'invisible': [('mass_order_id', '=', False)]}"
+                       options="{'no_create_edit': True, 'no_quick_create': True}"/>
             </xpath>
-
 
 
             <xpath expr="//field[@name='origin']" position="after">
@@ -63,30 +65,28 @@
             </xpath>
 
             <xpath expr="//button[@name='action_see_packages']" position="attributes">
-                    <attribute name="string">车厢</attribute>
+                <attribute name="string">车厢</attribute>
             </xpath>
 
             <xpath expr="//notebook/page[2]/field[@name='move_ids_without_package']" position="attributes">
-                    <attribute name="invisible">1</attribute>
+                <attribute name="invisible">1</attribute>
             </xpath>
 
-<!--             <xpath expr="//notebook/page[2]/button[@name='404']" position="attributes">-->
-<!--                    <attribute name="invisible">1</attribute>-->
-<!--            </xpath>-->
-
-             <xpath expr="//page[2]/button[@name='put_in_pack']" position="attributes">
-                    <attribute name="string">放入车厢</attribute>
+            <xpath expr="//page[2]/button[@name='put_in_pack']" position="attributes">
+                <attribute name="string">放入车厢</attribute>
             </xpath>
 
             <xpath expr="//notebook/page[@name='extra']" position="attributes">
-                    <attribute name="invisible">1</attribute>
+                <attribute name="invisible">1</attribute>
             </xpath>
 
             <xpath expr="//notebook/page[@name='note']/field[@name='note']" position="attributes">
-                    <attribute name="placeholder"></attribute>
+                <attribute name="placeholder"></attribute>
             </xpath>
 
-
+            <xpath expr="//button[@name='action_toggle_is_locked']" position="after">
+                <button class="oe_highlight" name="create_mass_loss_order" string="登记质损单" type="object"/>
+            </xpath>
 
         </field>
     </record>
