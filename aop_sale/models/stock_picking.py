@@ -30,6 +30,8 @@ class StockPicking(models.Model):
 
     vin = fields.Many2one(string='vin', related='move_id_without_package.move_line_ids.lot_id')
 
+    aging = fields.Float(string='时效(天)', related='picking_type_id.aging')
+
     product_uom_qty = fields.Float(
         '初始数量',
         related='move_id_without_package.product_uom_qty')
