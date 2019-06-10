@@ -52,6 +52,7 @@
         'views/stock_warehouse_views.xml',
         'views/account_tax_invoice_view.xml',
         'views/account_invoice.xml',
+        'views/actions.xml',
         'views/aop_sale_menu.xml'
 
     ],
