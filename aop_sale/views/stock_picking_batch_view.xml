@@ -97,6 +97,7 @@
                                 <field name="location_dest_id"/>
                                 <field name="operate_type_name"/>
                                 <field name="must_loading"
+                                       widget="boolean_toggle"
                                        attrs='{"invisible": [("parent.dispatch_type", "not in", ["tl", "tl"])]}'/>
                                 <field name="origin"/>
                                 <field name="state"/>
