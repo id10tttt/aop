@@ -20,7 +20,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['stock', 'sale', 'sale_stock'],
+    'depends': ['stock', 'sale', 'sale_stock', 'account', 'purchase', 'hr_expense'],
 
     # always loaded
     'data': [
@@ -33,7 +33,8 @@
         'data/stock.picking.type.csv',
         'data/stock.location.route.csv',
         'data/product.template.csv',
-        'data/res.partner.csv'
+        'data/res.partner.csv',
+        'data/res.users.csv',
 
 
 
